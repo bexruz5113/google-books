@@ -2,7 +2,15 @@
   <v-container class="mx-auto">
     <v-row>
       <v-col cols="12"><p class="text-h3 font-weight-bold">Books</p></v-col>
+      <v-col cols="12" class="text-center" v-if="!books.length">
+        <v-progress-circular
+          :size="100"
+          color="primary"
+          indeterminate
+        ></v-progress-circular>
+      </v-col>
       <v-col
+        v-else
         cols="12"
         sm="6"
         md="4"
@@ -101,27 +109,34 @@
               <v-list-item-subtitle>
                 {{ book.volumeInfo.title }}
               </v-list-item-subtitle>
-              <span class="pt-2">
-                <v-rating
-                  v-model="book.volumeInfo.averageRating"
-                  background-color="grey"
-                  color="orange accent-4"
-                  dense
-                  half-increments
-                  hover
-                  size="18"
-                ></v-rating>
+              <span class="d-flex justify-space-between pt-2">
+                <span
+                  ><v-rating
+                    v-model="book.volumeInfo.averageRating"
+                    background-color="grey"
+                    color="orange accent-4"
+                    dense
+                    half-increments
+                    hover
+                    size="18"
+                  ></v-rating
+                ></span>
+                <span>
+                  <router-link :to="`/book/${book.id}`">
+                    More Info
+                  </router-link>
+                </span>
               </span>
             </v-list-item-content>
           </v-list-item>
           <div class="d-flex justify-space-between align-center">
             <v-card-title class="text-sm-body-2">
-              <p class="mb-0 font-weight-black">$12.99</p>
-              <p class="mb-0 grey--text text-decoration-line-through">$10.09</p>
-              <!-- <b>${{ listAmount(book.saleInfo.listPrice.amount) }}</b> -->
-              <!-- <b class="grey--text text-decoration-line-through"
-                >${{ book.saleInfo.retailPrice }}</b
-              > -->
+              <!-- <p class="mb-0 font-weight-black">$12.99</p> -->
+              <!-- <p class="mb-0 grey--text text-decoration-line-through">$10.09</p> -->
+              <b>${{ listAmount(book.saleInfo.listPrice) }}</b>
+              <b class="grey--text text-decoration-line-through"
+                >${{ retailPrice(book.saleInfo.retailPrice) }}</b
+              >
             </v-card-title>
             <v-card-actions class="pt-0">
               <a class="linkStyle" :href="book.saleInfo.buyLink"> Buy Now </a>
@@ -189,9 +204,12 @@ export default {
   },
   methods: {
     ...mapActions("books", ["getbooks"]),
-    // listAmount(amount) {
-    //   return amount || "free";
-    // },
+    listAmount(x) {
+      return x?.amount || "free";
+    },
+    retailPrice(y) {
+      return y?.amount || "free";
+    },
   },
   async mounted() {
     await this.getbooks();
