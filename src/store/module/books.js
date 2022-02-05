@@ -20,8 +20,12 @@ const mutations = {
     state.totalItems = payload;
   },
 };
+
+// let searchTerm = "a";
+
 const actions = {
   async getbooks({ commit, state }, payload) {
+    // payload ? (searchTerm = payload) : "";
     await axios
       .get(
         `https://www.googleapis.com/books/v1/volumes?q=flowers&filter=free-ebooks&projection=full&startIndex=${

@@ -1,7 +1,26 @@
 <template>
   <v-container class="mx-auto">
     <v-row>
-      <v-col cols="12"><p class="text-h3 font-weight-bold">Books</p></v-col>
+      <v-col cols="12" sm="6"
+        ><p class="text-h3 font-weight-bold">Books</p></v-col
+      >
+      <v-col cols="12" sm="6">
+        <v-form
+          class="d-flex align-center justify-space-around"
+          ref="form"
+          @submit.prevent="search()"
+        >
+          <v-text-field
+            v-model="BookName"
+            :counter="20"
+            :rules="nameRules"
+            label="Book name ..."
+            required
+            class="mx-2"
+          ></v-text-field>
+          <v-btn class="mx-2" type="submit" color="primary"> search </v-btn>
+        </v-form>
+      </v-col>
 
       <v-col cols="12" class="text-center" v-if="!books.length">
         <v-progress-circular
@@ -17,66 +36,8 @@
         md="4"
         v-for="(book, index) in books"
         :key="index"
-        class="my-3 px-3 mx-auto"
+        class="d-flex justify-start my-3 px-3"
       >
-        <!-- <v-card class="mx-auto" tile>
-          <v-row align="end" class="fill-height">
-            <v-col cols="12" sm="4">
-              <v-avatar
-                class="d-flex justify-start"
-                color="white"
-                size="160"
-                tile
-              >
-                <div class="imgPosition">
-                  <img
-                    class="imgBorder"
-                    :src="book.volumeInfo.imageLinks.thumbnail"
-                    alt=""
-                  />
-                  <span class="iconPosition"
-                    ><a :href="book.saleInfo.buyLink"
-                      ><v-icon x-large color="black"
-                        >mdi-tray-arrow-down</v-icon
-                      ></a
-                    ></span
-                  >
-                </div>
-              </v-avatar>
-            </v-col>
-            <v-col cols="12" sm="8"
-              ><div class="mx-3 mt-4">
-                <p class="text-md-body-1 font-weight-black px-2 py-3 mb-0">
-                  {{ book.volumeInfo.title }}
-                </p>
-
-                <span class="d-flex"
-                  ><p
-                    v-for="author of book.volumeInfo.authors"
-                    :key="author.id"
-                  >
-                    Author: <b class="blue--text">{{ author }} </b>
-                  </p>
-                  <p class="pl-3">
-                    dec {{ book.volumeInfo.publishedDate }}
-                  </p></span
-                >
-                <p>Lang: {{ book.volumeInfo.language }}</p>
-                <p>Page : {{ book.volumeInfo.pageCount }} lorem</p>
-                <span
-                  ><v-rating
-                    v-model="rating"
-                    background-color="white"
-                    color="yellow accent-4"
-                    dense
-                    half-increments
-                    hover
-                    size="18"
-                  ></v-rating
-                ></span></div
-            ></v-col>
-          </v-row>
-        </v-card> -->
         <v-card class="mx-auto">
           <v-list-item class="pl-0">
             <v-list-item-avatar
@@ -132,8 +93,6 @@
           </v-list-item>
           <div class="d-flex justify-space-between align-center">
             <v-card-title class="text-sm-body-2">
-              <!-- <p class="mb-0 font-weight-black">$12.99</p> -->
-              <!-- <p class="mb-0 grey--text text-decoration-line-through">$10.09</p> -->
               <b>${{ listAmount(book.saleInfo.listPrice) }}</b>
               <b class="grey--text text-decoration-line-through"
                 >${{ retailPrice(book.saleInfo.retailPrice) }}</b
@@ -144,57 +103,18 @@
             </v-card-actions>
           </div>
         </v-card>
-        <!-- <v-card class="divPosition white lighten-4">
-          <div class="d-flex justify-start">
-            <div class="imgPosition">
-              <img
-                class="imgBorder"
-                :src="book.volumeInfo.imageLinks.thumbnail"
-                alt=""
-              />
-              <span class="iconPosition"
-                ><a :href="book.saleInfo.buyLink"
-                  ><v-icon x-large color="black">mdi-tray-arrow-down</v-icon></a
-                ></span
-              >
-            </div>
-            <div class="mx-3 mt-4">
-              <p class="text-md-body-1 font-weight-black px-2 py-3 mb-0">
-                {{ book.volumeInfo.title }}
-              </p>
-
-              <span class="d-flex"
-                ><p v-for="author of book.volumeInfo.authors" :key="author.id">
-                  Author: <b class="blue--text">{{ author }} </b>
-                </p>
-                <p class="pl-3">
-                  dec {{ book.volumeInfo.publishedDate }}
-                </p></span
-              >
-              <p>Lang: {{ book.volumeInfo.language }}</p>
-              <p>Page : {{ book.volumeInfo.pageCount }} lorem</p>
-              <span
-                ><v-rating
-                  v-model="rating"
-                  background-color="white"
-                  color="yellow accent-4"
-                  dense
-                  half-increments
-                  hover
-                  size="18"
-                ></v-rating
-              ></span>
-            </div>
-          </div>
-        </v-card> -->
       </v-col>
-      <v-col cols="12">
-        <div class="text-end">
+    </v-row>
+    <v-row justify="end">
+      <v-col cols="6">
+        <v-container class="max-width">
           <v-pagination
+            class="my-4"
             v-model="page"
             :length="paginationOfBooks"
+            :total-visible="8"
           ></v-pagination>
-        </div>
+        </v-container>
       </v-col>
     </v-row>
   </v-container>
@@ -207,6 +127,7 @@ export default {
   data() {
     return {
       page: 1,
+      BookName: "Flowers",
     };
   },
 

@@ -4,6 +4,14 @@
       <div class="pl-5">
         <v-icon x-large>mdi-access-point</v-icon>
       </div>
+      <div>
+        <router-link to="/" class="white--text text-decoration-none mr-3 ml-6"
+          >Home</router-link
+        >
+        <router-link to="/search" class="white--text text-decoration-none mx-3"
+          >Books</router-link
+        >
+      </div>
 
       <v-spacer></v-spacer>
 
