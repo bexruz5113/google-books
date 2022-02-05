@@ -2,6 +2,7 @@
   <v-container class="mx-auto">
     <v-row>
       <v-col cols="12"><p class="text-h3 font-weight-bold">Books</p></v-col>
+
       <v-col cols="12" class="text-center" v-if="!books.length">
         <v-progress-circular
           :size="100"
@@ -84,11 +85,11 @@
               color="grey"
             >
               <div class="imgPosition">
-                <img
+                <v-img
                   class="imgBorder"
                   :src="book.volumeInfo.imageLinks.thumbnail"
                   alt=""
-                />
+                ></v-img>
                 <span class="iconPosition"
                   ><a :href="book.saleInfo.buyLink"
                     ><v-icon x-large color="black"
@@ -107,7 +108,7 @@
                 <b class="blue--text d-flex">{{ author }}, </b>
               </v-list-item-title>
               <v-list-item-subtitle>
-                {{ book.volumeInfo.title }}
+                {{ index + 1 }}. {{ book.volumeInfo.title }}
               </v-list-item-subtitle>
               <span class="d-flex justify-space-between pt-2">
                 <span
@@ -187,6 +188,14 @@
           </div>
         </v-card> -->
       </v-col>
+      <v-col cols="12">
+        <div class="text-end">
+          <v-pagination
+            v-model="page"
+            :length="paginationOfBooks"
+          ></v-pagination>
+        </div>
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -196,14 +205,25 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   name: "Home",
   data() {
-    return {};
+    return {
+      page: 1,
+    };
   },
 
   computed: {
-    ...mapGetters("books", ["books"]),
+    ...mapGetters("books", ["books", "totalItems"]),
+    paginationOfBooks() {
+      return Math.ceil(this.totalItems / 10);
+    },
+  },
+  watch: {
+    page() {
+      this.getbooks(this.page);
+    },
   },
   methods: {
     ...mapActions("books", ["getbooks"]),
+
     listAmount(x) {
       return x?.amount || "free";
     },
@@ -212,7 +232,7 @@ export default {
     },
   },
   async mounted() {
-    await this.getbooks();
+    await this.getbooks(this.page);
   },
 };
 </script>
