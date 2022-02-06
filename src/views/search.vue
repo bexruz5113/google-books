@@ -1,41 +1,38 @@
 <template>
   <v-container class="mx-auto">
     <v-row>
-      <v-col cols="12" sm="6"
-        ><p class="text-h3 font-weight-bold">Books</p></v-col
-      >
-      <v-col cols="12" sm="6">
-        <v-form
-          class="d-flex align-center justify-space-around"
-          @submit.prevent="searchTitle"
-        >
-          <v-text-field
-            v-model="BookName"
-            :counter="20"
-            label="Book name ..."
-            class="mx-2"
-          ></v-text-field>
-          <v-btn class="mx-2" type="submit" color="primary"> search </v-btn>
-        </v-form>
+      <v-col cols="12">
+        <v-row class="d-flex align-center my-5">
+          <v-col cols="12" sm="6"
+            ><p class="text-h3 font-weight-bold">Books</p></v-col
+          >
+          <v-col cols="12" sm="6">
+            <v-toolbar flat color="transparent">
+              <v-text-field
+                v-model="searchName"
+                @input="onChangeSearch"
+                append-icon="mdi-magnify"
+                label="Search Music"
+                single-line
+              ></v-text-field>
+            </v-toolbar>
+          </v-col>
+        </v-row>
       </v-col>
 
-      <v-col cols="12" class="text-center" v-if="!search.length">
-        <v-progress-circular
-          :size="100"
-          color="primary"
-          indeterminate
-        ></v-progress-circular>
+      <v-col cols="12" class="text-center" v-if="!findBook.length">
+        <p>What kind of book are we searching... o0</p>
       </v-col>
       <v-col
         v-else
         cols="12"
         sm="6"
         md="4"
-        v-for="(find, index) in search"
+        v-for="(find, index) in findBook"
         :key="index"
         class="d-flex justify-start my-3 px-3"
       >
-        <v-card class="mx-auto">
+        <v-card class="mx-auto pa-2">
           <v-list-item class="pl-0">
             <v-list-item-avatar
               style="width: 100%; max-width: 90px; height: 100px"
@@ -107,11 +104,15 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import _ from "lodash";
+
 export default {
   name: "Home",
   data() {
     return {
       BookName: "flowers",
+      searchName: "",
+      findBook: [],
     };
   },
 
@@ -119,21 +120,32 @@ export default {
     ...mapGetters("search", ["search"]),
   },
   // watch: {
-  //   page() {
-  //     this.getsearch(this.page);
+  //   searchName() {
+  //     this.findBook = this.search.filter((find) => {
+  //       return find.volumeInfo.title.match(
+  //         this.getsearch(this.searchName ? this.searchName : this.BookName)
+  //       );
+  //     });
+  //     // this.getsearch(this.BookName.match(this.searchName));
   //   },
   // },
   methods: {
     ...mapActions("search", ["getsearch"]),
-    searchTitle() {
-      this.getsearch(this.BookName);
-    },
     listAmount(x) {
       return x?.amount || "free";
     },
     retailPrice(y) {
       return y?.amount || "free";
     },
+    onChangeSearch: _.debounce(function () {
+      console.log("axaxa");
+      if (this.searchName) {
+        this.getsearch(this.searchName).then(() => {
+          this.findBook = this.search;
+        });
+      }
+      this.findBook = [];
+    }, 600),
   },
   async mounted() {
     await this.getsearch(this.BookName);

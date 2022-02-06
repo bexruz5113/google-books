@@ -22,7 +22,6 @@ const actions = {
         `https://www.googleapis.com/books/v1/volumes/${payload}?key=AIzaSyB1jhXmGmQTVIjuGz4hOs0edmx9MtN5V2k`
       )
       .then((res) => {
-        console.log(res.data);
         commit("GET_BOOKINFO", res.data);
       })
       .catch((err) => {
