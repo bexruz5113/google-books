@@ -1,28 +1,28 @@
 import axios from "axios";
 
 const state = () => ({
-  search: [],
+  searchBook: [],
 });
 
 const getters = {
-  search(state) {
-    return state.search;
+  searchBook(state) {
+    return state.searchBook;
   },
 };
 
 const mutations = {
-  GET_SEARCH(state, payload) {
-    state.search = payload;
+  GET_SEARCH_BOOK(state, payload) {
+    state.searchBook = payload;
   },
 };
 const actions = {
-  async getsearch({ commit }, payload) {
+  async getSearchBook({ commit }, payload) {
     await axios
       .get(
         `https://www.googleapis.com/books/v1/volumes?q=${payload}&filter=free-ebooks&projection=full&key=AIzaSyB1jhXmGmQTVIjuGz4hOs0edmx9MtN5V2k`
       )
       .then((res) => {
-        commit("GET_SEARCH", res.data.items);
+        commit("GET_SEARCH_BOOK", res.data.items);
         return Promise.resolve();
       })
       .catch((err) => {

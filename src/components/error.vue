@@ -1,6 +1,6 @@
 <template>
-  <v-container class="mx-auto my-5 px-4">
-    <v-row>
+  <v-container class="mx-auto my-md-10 my-5 px-4">
+    <v-row class="my-md-10 my-5">
       <v-col cols="12" md="6"
         ><img
           style="width: 100%; max-width: 450px"

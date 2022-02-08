@@ -25,7 +25,7 @@ const mutations = {
 
 const actions = {
   async getbooks({ commit, state }, payload) {
-    // payload ? (searchTerm = payload) : "";
+    // console.log("dsd =>" + payload);
     await axios
       .get(
         `https://www.googleapis.com/books/v1/volumes?q=flowers&filter=free-ebooks&projection=full&startIndex=${

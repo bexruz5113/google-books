@@ -10,14 +10,14 @@
           ref="form"
           @submit.prevent="search()"
         >
-          <v-text-field
+          <!-- <v-text-field
             v-model="BookName"
             :counter="20"
             :rules="nameRules"
             label="Book name ..."
             required
             class="mx-2"
-          ></v-text-field>
+          ></v-text-field> -->
           <v-btn class="mx-2" type="submit" color="primary"> search </v-btn>
         </v-form>
       </v-col>
