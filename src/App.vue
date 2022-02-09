@@ -2,7 +2,7 @@
   <v-app>
     <Navbar />
     <v-main>
-      <router-view class="mt-5" />
+      <router-view class="mt-3" />
     </v-main>
     <Footer />
   </v-app>
@@ -20,3 +20,10 @@ export default {
   }),
 };
 </script>
+<style>
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+</style>

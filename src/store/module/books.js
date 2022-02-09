@@ -13,12 +13,8 @@ const mutations = {
     state.books = payload;
   },
 };
-
-// let searchTerm = "a";
-
 const actions = {
   async getbooks({ commit }, payload) {
-    console.log("vuex => " + payload);
     await axios
       .get(
         `https://www.googleapis.com/books/v1/volumes?q=${payload}&filter=free-ebooks&projection=full&maxResults=40&key=AIzaSyB1jhXmGmQTVIjuGz4hOs0edmx9MtN5V2k`

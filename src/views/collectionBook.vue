@@ -11,7 +11,7 @@
           class="d-flex justify-start my-3 px-3"
         >
           <v-card class="mx-auto pa-2">
-            <v-list-item class="pl-0">
+            <v-list-item class="px-0">
               <v-list-item-avatar
                 style="width: 100%; max-width: 90px; height: 100px"
                 class="imgBorder"
@@ -49,21 +49,31 @@
                   ></span>
                   <span>
                     <router-link :to="`/book/${find.id}`">
-                      More Info
+                      <p class="text-caption text-md-body-1">More Info</p>
                     </router-link>
                   </span>
                 </span>
               </v-list-item-content>
             </v-list-item>
             <div class="d-flex justify-space-between align-center">
-              <v-card-title class="text-sm-body-2">
-                <b>${{ listAmount(find.saleInfo.listPrice) }}</b>
+              <v-card-title class="pl-0 text-caption text-md-body-1">
+                <p class="mb-0 font-weight-black">$12.99-</p>
+
+                <p class="mb-0 grey--text text-decoration-line-through">
+                  $10.09
+                </p>
+                <!-- <b>${{ listAmount(find.saleInfo.listPrice) }}</b>
                 <b class="grey--text text-decoration-line-through"
                   >${{ retailPrice(find.saleInfo.retailPrice) }}</b
-                >
+                > -->
               </v-card-title>
-              <v-card-actions class="pt-0">
-                <a class="linkStyle" :href="find.saleInfo.buyLink"> Buy Now </a>
+              <v-card-actions class="pt-0 pr-0">
+                <a
+                  class="linkStyle text-caption text-md-body-1"
+                  :href="find.saleInfo.buyLink"
+                >
+                  Buy Now
+                </a>
               </v-card-actions>
             </div>
           </v-card>
@@ -80,8 +90,8 @@ export default {
     return {};
   },
   created() {
-    console.log(this.$route.params.title);
-    this.getbooks(this.$route.params.title);
+    // console.log(this.$route.params.title);
+    this.getbooks(this.$route.query.q);
   },
   computed: {
     ...mapGetters("books", ["books"]),
@@ -95,9 +105,11 @@ export default {
       return y?.amount || "free";
     },
   },
+  mounted() {
+    console.log(this.$route.name);
+  },
 };
 </script>
-
 <style scoped>
 * {
   padding: 0;

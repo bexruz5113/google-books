@@ -11,28 +11,13 @@
               ></v-img>
             </router-link>
           </v-col>
-          <v-col cols="12" md="6" class="my-md-0 mx-auto my-5">
-            <v-form
-              class="d-flex align-center justify-space-around"
-              ref="form"
-              @submit.prevent="search()"
-            >
-              <v-text-field
-                v-model="BookName"
-                label="Book name ..."
-                required
-                class="mx-2"
-              ></v-text-field>
-
-              <v-btn class="mx-2" type="submit" color="primary">
-                <v-icon>mdi-magnify</v-icon>
-              </v-btn>
-            </v-form>
+          <v-col cols="12" md="6" class="my-md-0 my-10 mx-auto">
+            <Searching />
           </v-col>
-          <v-col cols="12" class="text-center mt-10">
+          <v-col cols="12" class="text-center mt-md-10 mt-16">
             <div class="mx-auto">
               <img
-                style="width: 100%; max-width: 230px"
+                style="width: 100%; max-width: 228px"
                 src="../assets/gggg.svg"
                 alt=""
               />
@@ -44,18 +29,10 @@
   </v-container>
 </template>
 <script>
+import Searching from "../components/searching.vue";
 export default {
+  components: { Searching },
   name: "Home",
-  data() {
-    return {
-      BookName: "",
-    };
-  },
-  methods: {
-    search() {
-      this.$router.push(`/title/${this.BookName}`);
-    },
-  },
 };
 </script>
 <style scoped>

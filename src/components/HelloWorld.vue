@@ -1,5 +1,5 @@
 <template>
-  <v-container class="mx-auto d-none">
+  <!-- <v-container class="mx-auto d-none">
     <v-row>
       <v-col cols="12" sm="6"
         ><p class="text-h3 font-weight-bold">Books</p></v-col
@@ -8,16 +8,16 @@
         <v-form
           class="d-flex align-center justify-space-around"
           ref="form"
-          @submit.prevent="search()"
+          @submit.prevent="searching()"
         >
-          <!-- <v-text-field
+          <v-text-field
             v-model="BookName"
             :counter="20"
             :rules="nameRules"
             label="Book name ..."
             required
             class="mx-2"
-          ></v-text-field> -->
+          ></v-text-field>
           <v-btn class="mx-2" type="submit" color="primary"> search </v-btn>
         </v-form>
       </v-col>
@@ -105,19 +105,7 @@
         </v-card>
       </v-col>
     </v-row>
-    <!-- <v-row justify="end">
-      <v-col cols="6">
-        <v-container class="max-width">
-          <v-pagination
-            class="my-4"
-            v-model="page"
-            :length="paginationOfBooks"
-            :total-visible="8"
-          ></v-pagination>
-        </v-container>
-      </v-col>
-    </v-row> -->
-  </v-container>
+  </v-container> -->
 </template>
 
 <script>
