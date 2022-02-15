@@ -20,6 +20,7 @@ const actions = {
         `https://www.googleapis.com/books/v1/volumes?q=${payload}&filter=free-ebooks&projection=full&maxResults=40&key=AIzaSyB1jhXmGmQTVIjuGz4hOs0edmx9MtN5V2k`
       )
       .then((res) => {
+        console.log(res.data);
         commit("GET_BOOKS", res.data.items);
       })
       .catch((err) => {

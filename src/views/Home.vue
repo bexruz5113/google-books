@@ -1,37 +1,44 @@
 <template>
-  <v-container class="mx-auto">
-    <v-row>
-      <v-col cols="12">
-        <v-row class="d-block mb-3">
-          <v-col cols="12" md="4" class="mx-auto text-center">
-            <router-link to="/">
-              <v-img
-                style="width: 100%; max-width: 600px"
-                src="../assets/logo1.png"
-              ></v-img>
-            </router-link>
-          </v-col>
-          <v-col cols="12" md="6" class="my-md-0 my-10 mx-auto">
-            <Searching />
-          </v-col>
-          <v-col cols="12" class="text-center mt-md-10 mt-16">
-            <div class="mx-auto">
-              <img
-                style="width: 100%; max-width: 228px"
-                src="../assets/gggg.svg"
-                alt=""
-              />
-            </div>
-          </v-col>
-        </v-row>
-      </v-col>
-    </v-row>
-  </v-container>
+  <div>
+    <Navbar />
+    <v-container class="mx-auto mt-5">
+      <v-row>
+        <v-col cols="12">
+          <v-row class="d-block mb-3">
+            <v-col cols="12" md="4" class="mx-auto text-center">
+              <router-link to="/">
+                <v-img
+                  style="width: 100%; max-width: 600px"
+                  src="../assets/logo1.png"
+                ></v-img>
+              </router-link>
+            </v-col>
+            <v-col cols="12" md="6" class="my-md-0 my-10 mx-auto">
+              <Searching />
+            </v-col>
+            <v-col cols="12" class="text-center mt-md-10 mt-16">
+              <div class="mx-auto">
+                <img
+                  style="width: 100%; max-width: 228px"
+                  src="../assets/gggg.svg"
+                  alt=""
+                />
+              </div>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
+    </v-container>
+    <Footer />
+  </div>
 </template>
 <script>
 import Searching from "../components/searching.vue";
+import Footer from "../components/footer.vue";
+import Navbar from "../components/navbar.vue";
+
 export default {
-  components: { Searching },
+  components: { Navbar, Searching, Footer },
   name: "Home",
 };
 </script>

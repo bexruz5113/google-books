@@ -2,9 +2,19 @@
   <div>
     <v-app-bar class="px-md-5 px-2" color="white">
       <div>
-        <v-avatar class="avatarBorder" size="48">
-          <v-icon color="grey" medium> mdi-account </v-icon>
-        </v-avatar>
+        <v-menu offset-y>
+          <template v-slot:activator="{ on, attrs }">
+            <v-avatar v-bind="attrs" v-on="on" class="avatarBorder" size="48">
+              <!-- <span><v-img :src="user.Ju.AN"></v-img></span> -->
+            </v-avatar></template
+          >
+          <v-list>
+            <v-list-item>
+              <v-list-item-title class="px-4">dabba</v-list-item-title>
+              <v-list-item-title class="px-4">salom</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
       </div>
       <div class="d-md-block d-none mx-3">
         <v-icon medium color="grey darken-2"> mdi-view-comfy </v-icon>
@@ -17,17 +27,18 @@
         <router-link to="/search" class="black--text text-decoration-none mx-3"
           >Books</router-link
         >
+        <router-link
+          to="/my-library"
+          class="black--text text-decoration-none mx-3"
+          >My Library</router-link
+        >
       </div>
 
       <v-spacer></v-spacer>
-      <div class="d-md-none d-block">
+      <div class="d-block text-end" v-if="this.$route.name == 'Home'">
         <v-app-bar-nav-icon class="black--text" large></v-app-bar-nav-icon>
       </div>
-      <div
-        class="d-md-block d-none text-end"
-        style="width: 400px"
-        v-if="this.$route.name == 'search'"
-      >
+      <div class="d-block text-end" v-if="this.$route.name == 'search'">
         <router-link to="/">
           <v-btn class="mx-2" fab dark small color="primary">
             <v-icon> mdi-magnify </v-icon>
@@ -39,9 +50,11 @@
 </template>
 
 <script>
-// import Searching from "./searching.vue";
+import { mapGetters } from "vuex";
 export default {
-  // components: { Searching },
+  computed: {
+    ...mapGetters("user", ["user"]),
+  },
 };
 </script>
 

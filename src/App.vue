@@ -1,23 +1,19 @@
 <template>
   <v-app>
-    <Navbar />
     <v-main>
-      <router-view class="mt-3" />
+      <router-view />
     </v-main>
-    <Footer />
   </v-app>
 </template>
 
 <script>
-import Footer from "./components/footer.vue";
-import Navbar from "./components/navbar.vue";
+// import Footer from "./components/footer.vue";
+// import Navbar from "./components/navbar.vue";
 export default {
-  components: { Navbar, Footer },
+  // components: { Navbar, Footer },
   name: "App",
 
-  data: () => ({
-    //
-  }),
+  data: () => ({}),
 };
 </script>
 <style>

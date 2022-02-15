@@ -1,29 +1,30 @@
 import axios from "axios";
 
 const state = () => ({
-  bookInfo: [],
+  library: [],
 });
 
 const getters = {
-  bookInfo(state) {
-    return state.bookInfo;
+  library(state) {
+    return state.library;
   },
 };
 
 const mutations = {
-  GET_BOOKINFO(state, payload) {
-    state.bookInfo = payload;
+  GET_LIBRARY(state, payload) {
+    state.library = payload;
   },
 };
+
 const actions = {
-  async get_bookInfo({ commit }, payload) {
-    await axios
+  getMyLibrary({ commit }) {
+    axios
       .get(
-        `https://www.googleapis.com/books/v1/volumes/${payload}?key=AIzaSyB1jhXmGmQTVIjuGz4hOs0edmx9MtN5V2k`
+        "https://www.googleapis.com/books/v1/mylibrary/bookshelves?key=703055326239-e4gvf17k4mk4l8eigkv0r7140ngeeq54.apps.googleusercontent.com"
       )
       .then((res) => {
         console.log(res.data);
-        commit("GET_BOOKINFO", res.data);
+        commit("GET_LIBRARY", res.data);
       })
       .catch((err) => {
         console.log(err);
