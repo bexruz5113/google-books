@@ -14,7 +14,7 @@
                 ></v-img>
               </router-link>
             </v-col>
-            <v-col cols="12" md="6" class="my-md-0 my-10 mx-auto">
+            <v-col cols="12" md="6" class="my-md-0 my-10 mx-md-auto mx-2">
               <Searching />
             </v-col>
             <v-col cols="12" class="text-center mt-md-10 mt-16">

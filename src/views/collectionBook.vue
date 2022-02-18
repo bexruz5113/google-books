@@ -114,7 +114,7 @@ export default {
     },
   },
   mounted() {
-    console.log(this.$route.name);
+    console.log("collectionBook=>" + this.$route.name);
   },
 };
 </script>

@@ -4,10 +4,7 @@ import Home from "../views/Home.vue";
 import book from "../views/book.vue";
 import error from "../components/error.vue";
 import collectionBook from "../views/collectionBook.vue";
-import search from "../views/search.vue";
-import library from "../views/library.vue";
 import enter from "../views/enter.vue";
-import user from "../store/module/user";
 
 Vue.use(VueRouter);
 
@@ -29,16 +26,6 @@ const routes = [
     component: collectionBook,
   },
   {
-    path: "/filter",
-    name: "filter",
-    component: search,
-  },
-  {
-    path: "/my-library",
-    name: "my-library",
-    component: library,
-  },
-  {
     path: "/sign-in",
     name: "sign-in",
     component: enter,
@@ -58,12 +45,13 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth)) {
-    console.log("user" + user.getters.isLoggedIn);
-    if (user.getters.isLoggedIn) {
+    const isLoggedIn = localStorage.getItem("token");
+    console.log("isLoggedIn=>" + isLoggedIn);
+    if (isLoggedIn) {
       next();
       return;
     } else {
-      router.replace("/sign-in");
+      next("/sign-in");
     }
   } else {
     next();
