@@ -7,10 +7,7 @@
 </template>
 
 <script>
-// import Footer from "./components/footer.vue";
-// import Navbar from "./components/navbar.vue";
 export default {
-  // components: { Navbar, Footer },
   name: "App",
 
   data: () => ({}),

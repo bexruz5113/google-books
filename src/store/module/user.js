@@ -1,5 +1,6 @@
 const state = () => ({
-  user: {},
+  user: localStorage.getItem("user") || {},
+
   token: localStorage.getItem("token") || "",
 });
 

@@ -22,25 +22,21 @@ const routes = [
     path: "/book/:id",
     name: "book-info",
     component: book,
-    meta: { requiresAuth: true },
   },
   {
     path: "/search",
     name: "search",
     component: collectionBook,
-    meta: { requiresAuth: true },
   },
   {
     path: "/filter",
     name: "filter",
     component: search,
-    meta: { requiresAuth: true },
   },
   {
     path: "/my-library",
     name: "my-library",
     component: library,
-    meta: { requiresAuth: true },
   },
   {
     path: "/sign-in",

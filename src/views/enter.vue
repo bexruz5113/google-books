@@ -60,11 +60,12 @@ export default {
       let googleUser = await this.$gAuth.signIn();
 
       const token = googleUser.wc.access_token;
-      console.log("xaxaxa " + token);
-      localStorage.setItem("token ", token);
+      const user = JSON.stringify(googleUser.Ju);
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", user);
       this.SET_TOKEN(token);
 
-      console.log("googleUser", googleUser);
+      console.log("googleUser =>", googleUser);
       // this.$store.commit("user/GET_USER", googleUser); or//
       this.GET_USER(googleUser);
       this.isLogin = this.$gAuth.isAuthorized;

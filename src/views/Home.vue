@@ -6,6 +6,7 @@
         <v-col cols="12">
           <v-row class="d-block mb-3">
             <v-col cols="12" md="4" class="mx-auto text-center">
+              <!-- <p class="textAnimation text-h2 font-weight-bold">Google Book</p> -->
               <router-link to="/">
                 <v-img
                   style="width: 100%; max-width: 600px"
@@ -49,7 +50,33 @@ export default {
   box-sizing: border-box;
   text-decoration: none;
 }
-
+.textAnimation {
+  text-transform: uppercase;
+  background-image: linear-gradient(
+    to right,
+    red,
+    yellow,
+    green,
+    blue,
+    red,
+    yellow,
+    green,
+    blue
+  );
+  background-clip: text;
+  color: transparent;
+  background-size: 300%;
+  background-position: -100%;
+  animation: animatedText 10s infinite linear;
+}
+@keyframes animatedText {
+  from {
+    background-position: 0%;
+  }
+  to {
+    background-position: 100%;
+  }
+}
 .imgBorder {
   border-radius: 5px;
   margin-top: 0;
