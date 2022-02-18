@@ -1,5 +1,6 @@
 const state = () => ({
-  user: {},
+  user: localStorage.getItem("user") || {},
+
   token: localStorage.getItem("token") || "",
 });
 
@@ -7,20 +8,23 @@ const getters = {
   user(state) {
     return state.user;
   },
-  isLoggedIn: (state) => !!state.token,
 };
 
 const mutations = {
   GET_USER(state, payload) {
-    console.log("wewewe" + payload);
     state.user = payload;
   },
   SET_TOKEN(state, payload) {
-    console.log("token" + payload);
     state.token = payload;
   },
 };
-const actions = {};
+const actions = {
+  getUser({ commit }) {
+    const userInfo = localStorage.getItem("user") || {};
+    commit("GET_USER", JSON.parse(userInfo));
+    return Promise.resolve();
+  },
+};
 
 export default {
   namespaced: true,

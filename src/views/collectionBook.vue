@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Navbar />
     <v-container class="mx-auto">
       <v-row>
         <v-col
@@ -80,12 +81,19 @@
         </v-col>
       </v-row>
     </v-container>
+    <Footer />
   </div>
 </template>
 
 <script>
+import Navbar from "../components/navbar.vue";
+import Footer from "../components/footer.vue";
 import { mapActions, mapGetters } from "vuex";
 export default {
+  components: {
+    Navbar,
+    Footer,
+  },
   data() {
     return {};
   },
@@ -106,7 +114,7 @@ export default {
     },
   },
   mounted() {
-    console.log(this.$route.name);
+    console.log("collectionBook=>" + this.$route.name);
   },
 };
 </script>

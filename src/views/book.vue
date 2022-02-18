@@ -1,6 +1,7 @@
 <template>
   <div>
-    <v-container class="mx-auto">
+    <Navbar />
+    <v-container class="mx-auto mt-6">
       <v-row>
         <v-col cols="12" class="text-center" v-if="!bookInfo">
           <v-progress-circular
@@ -40,12 +41,16 @@
         </v-col>
       </v-row>
     </v-container>
+    <Footer />
   </div>
 </template>
 
 <script>
+import Navbar from "../components/navbar.vue";
+import Footer from "../components/footer.vue";
 import { mapActions, mapGetters } from "vuex";
 export default {
+  components: { Navbar, Footer },
   data() {
     return {};
   },
