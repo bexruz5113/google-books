@@ -10,8 +10,8 @@
           >
           <v-list>
             <v-list-item>
-              <v-list-item-title class="px-4">dabba</v-list-item-title>
-              <v-list-item-title class="px-4">salom</v-list-item-title>
+              <v-list-item-title class="px-4">hello world</v-list-item-title>
+              <v-list-item-title class="px-4">hi what is up</v-list-item-title>
             </v-list-item>
           </v-list>
         </v-menu>
@@ -26,11 +26,6 @@
         >
         <router-link to="/search" class="black--text text-decoration-none mx-3"
           >Books</router-link
-        >
-        <router-link
-          to="/my-library"
-          class="black--text text-decoration-none mx-3"
-          >My Library</router-link
         >
       </div>
 
