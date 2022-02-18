@@ -1,7 +1,7 @@
 <template>
   <div>
     <Navbar />
-    <v-container class="mx-auto">
+    <v-container class="mx-auto mt-5">
       <v-row>
         <v-col
           cols="12"
@@ -114,7 +114,7 @@ export default {
     },
   },
   mounted() {
-    console.log("collectionBook=>" + this.$route.name);
+    // console.log("collectionBook=>" + this.$route.name);
   },
 };
 </script>

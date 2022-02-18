@@ -46,41 +46,6 @@
           <router-link to="/" class="black--text text-decoration-none mr-3 ml-6"
             >Home</router-link
           >
-<<<<<<< HEAD
-          <v-list>
-            <v-list-item>
-              <v-list-item-title class="px-4">hello world</v-list-item-title>
-              <v-list-item-title class="px-4">hi what is up</v-list-item-title>
-            </v-list-item>
-          </v-list>
-        </v-menu>
-      </div>
-      <div class="d-md-block d-none mx-3">
-        <v-icon medium color="grey darken-2"> mdi-view-comfy </v-icon>
-      </div>
-
-      <div class="d-md-block d-none">
-        <router-link to="/" class="black--text text-decoration-none mr-3 ml-6"
-          >Home</router-link
-        >
-        <router-link to="/search" class="black--text text-decoration-none mx-3"
-          >Books</router-link
-        >
-      </div>
-
-      <v-spacer></v-spacer>
-      <div class="d-block text-end" v-if="this.$route.name == 'Home'">
-        <v-app-bar-nav-icon class="black--text" large></v-app-bar-nav-icon>
-      </div>
-      <div class="d-block text-end" v-if="this.$route.name == 'search'">
-        <router-link to="/">
-          <v-btn class="mx-2" fab dark small color="primary">
-            <v-icon> mdi-magnify </v-icon>
-          </v-btn></router-link
-        >
-      </div>
-    </v-app-bar>
-=======
           <router-link to="/" class="black--text text-decoration-none mx-3"
             >Books</router-link
           >
@@ -94,7 +59,7 @@
         <div class="d-block text-end" v-if="this.$route.name == 'Home'">
           <v-app-bar-nav-icon class="black--text" large></v-app-bar-nav-icon>
         </div>
-        <div class="d-block text-end" v-if="this.$route.name == 'search'">
+        <div class="d-block text-end" v-if="this.$route.name !== 'Home'">
           <router-link to="/">
             <v-btn class="mx-2" fab dark small color="primary">
               <v-icon> mdi-magnify </v-icon>
@@ -103,7 +68,6 @@
         </div>
       </v-app-bar>
     </div>
->>>>>>> edaab14ab586d81c963e5ea5c790963bd0d6f7a6
   </div>
 </template>
 
@@ -129,7 +93,7 @@ export default {
   async mounted() {
     this.loader = true;
     await this.getUser().then(() => {
-      console.log(this.user);
+      // console.log(this.user);
     });
     this.loader = false;
   },
