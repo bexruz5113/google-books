@@ -20,6 +20,7 @@
                 <v-btn style="width: 100%" @click="login()">
                   <img
                     style="width: 20px"
+                    class="mr-1"
                     src="https://gitlab.com/assets/auth_buttons/google_64-9ab7462cd2115e11f80171018d8c39bd493fc375e83202fbb6d37a487ad01908.png"
                   />
                   Google</v-btn
@@ -27,13 +28,20 @@
               </div>
               <div class="text-center mx-1 py-3">
                 <v-btn style="width: 100%" @click="login()">
-                  <v-icon>mdi-facebook</v-icon>
+                  <v-icon class="mr-1">mdi-facebook</v-icon>
                   Facebook</v-btn
                 >
+                <!-- <facebook-login
+                  class="button"
+                  appId="1074406959771848"
+                  @login="onLogin"
+                >
+                </facebook-login> -->
               </div>
               <div class="text-center mx-1 py-3">
                 <v-btn style="width: 100%" @click="login()">
                   <img
+                    class="mr-1"
                     style="width: 20px"
                     src="https://gitlab.com/assets/auth_buttons/github_64-84041cd0ea392220da96f0fb9b9473c08485c4924b98c776be1bd33b0daab8c0.png"
                     alt=""

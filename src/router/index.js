@@ -5,6 +5,7 @@ import book from "../views/book.vue";
 import error from "../components/error.vue";
 import collectionBook from "../views/collectionBook.vue";
 import enter from "../views/enter.vue";
+import map from "../components/map.vue";
 
 Vue.use(VueRouter);
 
@@ -29,6 +30,11 @@ const routes = [
     path: "/sign-in",
     name: "sign-in",
     component: enter,
+  },
+  {
+    path: "/map",
+    name: "map",
+    component: map,
   },
   {
     path: "*",

@@ -11,20 +11,12 @@
           :key="index"
           class="d-flex justify-start my-3 px-3"
         >
-          <v-card class="mx-auto pa-2">
+          <v-card class="mx-auto pa-3">
             <v-list-item class="px-0">
-              <v-list-item-avatar
-                style="width: 100%; max-width: 90px; height: 100px"
-                class="imgBorder"
-                color="grey"
-              >
-                <div class="imgPosition">
-                  <v-img
-                    class="imgBorder"
-                    :src="find.volumeInfo.imageLinks.thumbnail"
-                    alt=""
-                  ></v-img></div
-              ></v-list-item-avatar>
+              <v-list-item-avatar size="100" class="imgBorder">
+                <img :src="find.volumeInfo.imageLinks.thumbnail" />
+              </v-list-item-avatar>
+
               <v-list-item-content>
                 <v-list-item-title
                   class="mb-1"
@@ -36,33 +28,31 @@
                 <v-list-item-subtitle>
                   {{ index + 1 }}. {{ find.volumeInfo.title }}
                 </v-list-item-subtitle>
-                <span class="d-flex justify-space-between pt-2">
-                  <span
-                    ><v-rating
+                <div class="d-flex justify-space-between pt-2">
+                  <div>
+                    <v-rating
                       v-model="find.volumeInfo.averageRating"
                       background-color="grey"
                       color="orange accent-4"
                       dense
-                      half-increments
-                      hover
-                      size="18"
-                    ></v-rating
-                  ></span>
-                  <span>
+                      readonly
+                      size="17"
+                    ></v-rating>
+                  </div>
+
+                  <div>
                     <router-link :to="`/book/${find.id}`">
                       <p class="text-caption text-md-body-1">More Info</p>
                     </router-link>
-                  </span>
-                </span>
+                  </div>
+                </div>
               </v-list-item-content>
             </v-list-item>
-            <div class="d-flex justify-space-between align-center">
+            <div class="d-flex justify-space-between align-center mt-3">
               <v-card-title class="pl-0 text-caption text-md-body-1">
-                <p class="mb-0 font-weight-black">$12.99-</p>
-
-                <p class="mb-0 grey--text text-decoration-line-through">
+                <small class="mb-0 grey--text text-decoration-line-through">
                   $10.09
-                </p>
+                </small>
                 <!-- <b>${{ listAmount(find.saleInfo.listPrice) }}</b>
                 <b class="grey--text text-decoration-line-through"
                   >${{ retailPrice(find.saleInfo.retailPrice) }}</b
@@ -70,7 +60,7 @@
               </v-card-title>
               <v-card-actions class="pt-0 pr-0">
                 <a
-                  class="linkStyle text-caption text-md-body-1"
+                  class="linkStyle text-caption text-md-body-2"
                   :href="find.saleInfo.buyLink"
                 >
                   Buy Now
@@ -98,7 +88,7 @@ export default {
     return {};
   },
   created() {
-    // console.log(this.$route.params.title);
+    console.log(this.$route.params.title);
     this.getbooks(this.$route.query.q);
   },
   computed: {
@@ -114,7 +104,7 @@ export default {
     },
   },
   mounted() {
-    // console.log("collectionBook=>" + this.$route.name);
+    console.log("collectionBook=>" + this.$route.name);
   },
 };
 </script>
@@ -128,28 +118,9 @@ export default {
 .imgBorder {
   border-radius: 5px;
   margin-top: 0;
-  border: 1px solid rgb(63, 62, 62);
+  border: 1px solid rgba(63, 62, 62, 0.575);
 }
-.imgPosition {
-  position: relative;
-  display: flex;
-  transition: all 0.9s ease;
-}
-.iconPosition {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: rgba(182, 180, 180, 0.719);
-  display: none;
-}
-.imgPosition:hover .iconPosition {
-  display: flex;
-}
+
 .linkStyle {
   padding: 2px 5px;
   font-size: 14px;

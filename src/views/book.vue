@@ -1,7 +1,7 @@
 <template>
   <div>
     <Navbar />
-    <v-container class="mx-auto mt-6">
+    <v-container class="mx-auto mt-10">
       <v-row>
         <v-col cols="12" class="text-center" v-if="!bookInfo">
           <v-progress-circular
@@ -22,20 +22,47 @@
                 <p class="textPosition">#book</p>
               </span>
             </v-col>
-            <v-col cols="12" md="6" class="px-4">
-              <span class="d-block px-4">
-                <span v-html="description(bookInfo.volumeInfo)"></span>
-
-                <span class="d-flex py-3">
-                  <p>Author:</p>
-                  <span
-                    v-for="author in authors(bookInfo.volumeInfo)"
-                    :key="author.index"
-                  >
-                    <p class="px-2 primary--text">{{ author }};</p>
-                  </span></span
+            <v-col cols="12" md="6" class="px-md-4 px-1 mt-sm-1 mt-5">
+              <div class="d-block px-4 text-lg-left text-sm-center text-left">
+                <div v-html="description(bookInfo.volumeInfo)"></div>
+                <div class="mb-2">
+                  Title: <b class="ml-1">{{ bookInfo.volumeInfo.title }}</b>
+                </div>
+                <div
+                  class="d-flex justify-lg-start justify-sm-center justify-start mb-2"
                 >
-              </span>
+                  <div>Author:</div>
+                  <div class="ml-1">
+                    <div
+                      v-for="author in authors(bookInfo.volumeInfo)"
+                      :key="author.index"
+                    >
+                      <b class="mb-1">{{ author }}</b>
+                    </div>
+                    <div class="grey--text text-caption">
+                      <b>{{ bookInfo.volumeInfo.publisher }}</b>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-2">
+                  Date:
+                  <b class="ml-1"
+                    >Jan.{{ bookInfo.volumeInfo.publishedDate }}</b
+                  >
+                </div>
+                <div class="mb-2">
+                  Language:
+                  <b class="ml-1">{{ bookInfo.volumeInfo.language }}</b>
+                </div>
+                <div class="mb-2">
+                  Page: <b class="ml-1">{{ bookInfo.volumeInfo.pageCount }}</b>
+                </div>
+                <div class="">
+                  <a :href="bookInfo.saleInfo.buyLink"
+                    >{{ saleability }} reading</a
+                  >
+                </div>
+              </div>
             </v-col>
           </v-row>
         </v-col>
@@ -60,6 +87,9 @@ export default {
   },
   computed: {
     ...mapGetters("bookInfo", ["bookInfo"]),
+    saleability() {
+      return this.bookInfo.saleInfo.saleability.toLowerCase();
+    },
   },
   methods: {
     ...mapActions("bookInfo", ["get_bookInfo"]),
@@ -88,7 +118,7 @@ export default {
 }
 .imgBorder {
   width: 100%;
-  max-width: 450px;
+  max-width: 380px;
   border-radius: 15px;
   border: 1px solid gray;
 }

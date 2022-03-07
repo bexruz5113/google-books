@@ -78,7 +78,7 @@
                 ></v-avatar>
               </v-btn>
             </template>
-            <v-card>
+            <v-card class="py-3">
               <v-list-item-content class="justify-center">
                 <div class="mx-auto text-center">
                   <v-avatar>
@@ -153,6 +153,7 @@ export default {
     ...mapActions("user", ["getUser"]),
     logout() {
       localStorage.removeItem("user");
+      localStorage.removeItem("token");
       this.$router.push("/sign-in");
     },
   },
