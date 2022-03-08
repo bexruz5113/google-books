@@ -11,7 +11,7 @@
                 ></v-avatar>
               </v-btn>
             </template>
-            <v-card>
+            <v-card class="py-3">
               <v-list-item-content class="justify-center">
                 <div class="mx-auto text-center">
                   <v-avatar>
@@ -56,7 +56,16 @@
         </div>
         <v-spacer></v-spacer>
         <div class="d-block text-end" v-if="this.$route.name == 'Home'">
-          <v-app-bar-nav-icon class="black--text" large></v-app-bar-nav-icon>
+          <v-btn
+            @click="routerLink"
+            medium
+            class="mx-2"
+            color="primary"
+            type="submit"
+          >
+            <p class="my-1">Map</p>
+            <v-icon>mdi-map-marker</v-icon>
+          </v-btn>
         </div>
         <div class="d-block text-end" v-if="this.$route.name !== 'Home'">
           <router-link to="/">
@@ -123,7 +132,16 @@
         </div>
         <v-spacer></v-spacer>
         <div class="d-block text-end" v-if="this.$route.name == 'Home'">
-          <v-app-bar-nav-icon class="black--text" large></v-app-bar-nav-icon>
+          <v-btn
+            @click="routerLink"
+            medium
+            class="mx-2"
+            color="primary"
+            type="submit"
+          >
+            <p class="my-1">Map</p>
+            <v-icon>mdi-map-marker</v-icon>
+          </v-btn>
         </div>
         <div class="d-block text-end" v-if="this.$route.name !== 'Home'">
           <router-link to="/">
@@ -155,6 +173,9 @@ export default {
       localStorage.removeItem("user");
       localStorage.removeItem("token");
       this.$router.push("/sign-in");
+    },
+    routerLink() {
+      return this.$router.push("/map");
     },
   },
   async mounted() {
