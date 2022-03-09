@@ -6,6 +6,9 @@
         <v-col cols="12" class="text-left">
           <p class="text-md-h4 text-h5 font-weight-black mb-1">
             Your coordinates:
+            <img
+              src="https://img.icons8.com/color/32/000000/google-maps-new.png"
+            />
           </p>
           <p class="mb-1">Latitude: {{ coordinates.lat }}</p>
           <p>Longitude: {{ coordinates.lng }}</p>
@@ -29,10 +32,29 @@
               v-for="(m, index) in markers"
               :position="m.position"
               :clickable="true"
-              :draggable="true"
+              :draggable="false"
               :title="m.title"
+              :icon="{
+                url: require('../assets/marker.png'),
+                scaledSize: { height: 46, width: 46 },
+                labelOrigin: { x: 0, y: 50 },
+              }"
+              :label="{
+                text: m.title,
+                color: 'white',
+                fontSize: '12px',
+                fontFamily: 'din_round_otbold',
+              }"
               @click="center = m.position"
-            />
+            >
+              <GmapInfoWindow
+                :opened="infoBoxOpen"
+                @closeclick="infoBoxOpen = true"
+                :options="{
+                  pixelOffset: { width: 0, height: 0 },
+                }"
+              ></GmapInfoWindow>
+            </GmapMarker>
           </GmapMap>
         </v-col>
       </v-row>
@@ -50,58 +72,76 @@ export default {
   data() {
     return {
       map: null,
+      infoBoxOpen: false,
       coordinates: {
         lat: 0,
         lng: 0,
       },
       markers: [
         {
-          title: "book Store",
-          position: { lat: 41.350698, lng: 69.291603 },
+          title: "iBook.uz",
+          position: { lat: 41.3122829, lng: 69.189708 },
         },
         {
-          title: "book Store",
-          position: { lat: 41.3077191, lng: 69.199665 },
+          title: "Asaxiy Books",
+          position: { lat: 41.2919162, lng: 69.2211632 },
         },
         {
-          title: "book Store",
-          position: { lat: 41.3147904, lng: 69.2867243 },
+          title: "Hilol Nashr",
+          position: { lat: 41.3211484, lng: 69.1956506 },
         },
         {
-          title: "book Store",
-          position: { lat: 41.2834393, lng: 69.2105532 },
+          title: "Book.uz",
+          position: { lat: 41.3146907, lng: 69.1897077 },
         },
         {
-          title: "book Store",
-          position: { lat: 41.3226139, lng: 69.2199946 },
+          title: "Audio kitoblar",
+          position: { lat: 41.3113936, lng: 69.2477858 },
+        },
+
+        {
+          title: "Yuridik adabiyotlar",
+          position: { lat: 41.2856997, lng: 69.2327396 },
         },
         {
-          title: "book Store",
-          position: { lat: 41.3353898, lng: 69.3714674 },
-        },
-        {
-          title: "book Store",
-          position: { lat: 41.3199066, lng: 69.2570735 },
-        },
-        {
-          title: "book Store",
+          title: "Alif kitoblar do'koni",
           position: { lat: 41.3216835, lng: 69.1675653 },
         },
         {
-          title: "book Store",
-          position: { lat: 41.2734906, lng: 69.1474545 },
+          title: "Factor Books Tashkent",
+          position: { lat: 41.290774, lng: 69.2233224 },
         },
         {
-          title: "book Store",
-          position: { lat: 41.2858065, lng: 69.2507301 },
+          title: "KITOBSAVDO.UZ",
+          position: { lat: 41.3218602, lng: 69.2507297 },
         },
         {
-          title: "book Store",
-          position: { lat: 41.3110437, lng: 69.2416733 },
+          title: "Kitob dunyosi",
+          position: { lat: 41.3147864, lng: 69.288913 },
         },
         {
-          title: "book Store",
-          position: { lat: 41.3104555, lng: 69.267881 },
+          title: "Furqon kitob do'koni",
+          position: { lat: 41.2771129, lng: 69.3091613 },
+        },
+        {
+          title: "ShAMS kitoblar do'koni",
+          position: { lat: 41.2936815, lng: 69.2261895 },
+        },
+        {
+          title: "Taskin kitoblar",
+          position: { lat: 41.2783154, lng: 69.2687903 },
+        },
+        {
+          title: "Macmillan",
+          position: { lat: 41.3272603, lng: 69.2899334 },
+        },
+        {
+          title: "Malico Books",
+          position: { lat: 41.2632436, lng: 69.1626377 },
+        },
+        {
+          title: "Muslim books kitoblar do'koni",
+          position: { lat: 41.3583412, lng: 69.1940879 },
         },
       ],
     };
