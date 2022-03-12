@@ -6,6 +6,7 @@ import error from "../components/error.vue";
 import collectionBook from "../views/collectionBook.vue";
 import enter from "../views/enter.vue";
 import map from "../components/map.vue";
+import leafletMap from "../components/leafletMap.vue";
 
 Vue.use(VueRouter);
 
@@ -35,6 +36,11 @@ const routes = [
     path: "/map",
     name: "map",
     component: map,
+  },
+  {
+    path: "/store-map",
+    name: "store map",
+    component: leafletMap,
   },
   {
     path: "*",

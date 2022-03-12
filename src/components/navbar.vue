@@ -175,7 +175,7 @@ export default {
       this.$router.push("/sign-in");
     },
     routerLink() {
-      return this.$router.push("/map");
+      return this.$router.push("/store-map");
     },
   },
   async mounted() {

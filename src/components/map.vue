@@ -16,7 +16,7 @@
         <v-col cols="12" class="mx-auto">
           <GmapMap
             :center="coordinates"
-            :zoom="13"
+            :zoom="12"
             map-type-id="roadmap"
             style="
               width: 100%;
@@ -52,6 +52,7 @@
                 @closeclick="infoBoxOpen = true"
                 :options="{
                   pixelOffset: { width: 0, height: 0 },
+                  content: 'salom',
                 }"
               ></GmapInfoWindow>
             </GmapMarker>
