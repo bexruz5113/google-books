@@ -7,6 +7,7 @@ import collectionBook from "../views/collectionBook.vue";
 import enter from "../views/enter.vue";
 import map from "../components/map.vue";
 import leafletMap from "../components/leafletMap.vue";
+import store from "../views/store.vue";
 
 Vue.use(VueRouter);
 
@@ -41,6 +42,11 @@ const routes = [
     path: "/store-map",
     name: "store map",
     component: leafletMap,
+  },
+  {
+    path: "/stores",
+    name: "store",
+    component: store,
   },
   {
     path: "*",

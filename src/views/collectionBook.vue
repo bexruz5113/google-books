@@ -5,16 +5,75 @@
       <v-row>
         <v-col
           cols="12"
-          sm="6"
-          md="4"
+          class="d-flex justify-center align-center"
+          style="width: 100vw; height: 100vh"
+          v-if="!books"
+        >
+          <div class="text-h5">
+            Sorry not found, <router-link to="/"> try again</router-link>
+          </div>
+        </v-col>
+        <v-col
+          v-else
+          cols="6"
+          sm="4"
+          md="3"
+          lg="2"
           v-for="(find, index) in books"
           :key="index"
-          class="d-flex justify-start my-3 px-3"
+          class="d-block my-3 px-3 text-center"
         >
-          <v-card class="mx-auto pa-3">
+          <router-link :to="`/book/${find.id}`">
+            <div class="pa-0">
+              <v-list-item-avatar
+                class="frameStyle"
+                style="height: 170px; max-width: 135px; width: 100%"
+              >
+                <img
+                  class="imgBorder"
+                  :src="find.volumeInfo.imageLinks.thumbnail"
+                />
+
+                <div class="ratingInfo">
+                  <v-icon color="orange" x-small>mdi-star</v-icon>
+                  <p class="mb-0 pl-1">
+                    {{
+                      find.volumeInfo.averageRating
+                        ? find.volumeInfo.averageRating
+                        : 0
+                    }}
+                  </p>
+                </div>
+              </v-list-item-avatar>
+            </div>
+            <div class="py-0">
+              <v-list-item color="black">
+                <v-list-item-content>
+                  <v-list-item-title class="text-md-body-1">
+                    {{ find.volumeInfo.title }}
+                  </v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </div>
+          </router-link>
+
+          <!-- <router-link :to="`/book/${find.id}`">
             <v-list-item class="px-0">
-              <v-list-item-avatar size="100" class="imgBorder">
-                <img :src="find.volumeInfo.imageLinks.thumbnail" />
+              <v-list-item-avatar size="100" class="frameStyle">
+                <img
+                  class="imgBorder"
+                  :src="find.volumeInfo.imageLinks.thumbnail"
+                />
+                <div class="ratingInfo">
+                  <v-icon color="orange" x-small>mdi-star</v-icon>
+                  <p class="mb-0">
+                    {{
+                      find.volumeInfo.averageRating
+                        ? find.volumeInfo.averageRating
+                        : 0
+                    }}
+                  </p>
+                </div>
               </v-list-item-avatar>
 
               <v-list-item-content>
@@ -28,46 +87,9 @@
                 <v-list-item-subtitle>
                   {{ index + 1 }}. {{ find.volumeInfo.title }}
                 </v-list-item-subtitle>
-                <div class="d-flex justify-space-between pt-2">
-                  <div>
-                    <v-rating
-                      v-model="find.volumeInfo.averageRating"
-                      background-color="grey"
-                      color="orange accent-4"
-                      dense
-                      readonly
-                      size="17"
-                    ></v-rating>
-                  </div>
-
-                  <div>
-                    <router-link :to="`/book/${find.id}`">
-                      <p class="text-caption text-md-body-1">More Info</p>
-                    </router-link>
-                  </div>
-                </div>
               </v-list-item-content>
             </v-list-item>
-            <div class="d-flex justify-space-between align-center mt-3">
-              <v-card-title class="pl-0 text-caption text-md-body-1">
-                <small class="mb-0 grey--text text-decoration-line-through">
-                  $10.09
-                </small>
-                <!-- <b>${{ listAmount(find.saleInfo.listPrice) }}</b>
-                <b class="grey--text text-decoration-line-through"
-                  >${{ retailPrice(find.saleInfo.retailPrice) }}</b
-                > -->
-              </v-card-title>
-              <v-card-actions class="pt-0 pr-0">
-                <a
-                  class="linkStyle text-caption text-md-body-2"
-                  :href="find.saleInfo.buyLink"
-                >
-                  Buy Now
-                </a>
-              </v-card-actions>
-            </div>
-          </v-card>
+          </router-link> -->
         </v-col>
       </v-row>
     </v-container>
@@ -115,16 +137,35 @@ export default {
   box-sizing: border-box;
   text-decoration: none;
 }
-.imgBorder {
-  border-radius: 5px;
-  margin-top: 0;
-  border: 1px solid rgba(63, 62, 62, 0.575);
-}
 
-.linkStyle {
-  padding: 2px 5px;
-  font-size: 14px;
-  border-radius: 20px;
-  border: 1px solid #1976d2;
+.frameStyle {
+  width: 100%;
+  height: 170px;
+  max-width: 134px;
+  margin: 0 auto;
+  border-radius: 8px;
+  position: relative;
+}
+.v-application--is-ltr .v-list-item__avatar:first-child {
+  margin-right: 0px;
+}
+.imgBorder {
+  background: rgba(197, 191, 191, 0.575);
+  padding: 20px 25px;
+  margin: 0 auto;
+}
+.ratingInfo {
+  display: flex;
+  width: 50px;
+  position: relative;
+  font-size: 12px;
+  font-weight: bold;
+  right: 50px;
+  bottom: -30px;
+  border-radius: 5px;
+  padding: 5px 10px;
+  background-color: white;
+  color: rgb(28, 28, 121);
+  font-family: sans-serif;
 }
 </style>

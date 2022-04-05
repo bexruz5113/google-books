@@ -1,18 +1,17 @@
 <template>
   <div>
     <v-form
-      class="d-flex align-center justify-space-around"
-      ref="form"
+      class="d-flex align-start justify-center"
       @submit.prevent="search()"
     >
       <v-text-field
         v-model="BookName"
         label="Book name ..."
         required
-        class="mx-2"
+        class="mr-2"
       ></v-text-field>
 
-      <v-btn large class="mx-2" color="primary" type="submit">
+      <v-btn large class="ml-2 mt-1" color="primary" type="submit">
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
     </v-form>
@@ -31,8 +30,16 @@ export default {
       this.$router.push(`/search?q=${this.BookName}`);
     },
   },
+
   mounted() {
     console.log("searching=>" + this.$route.query.q);
   },
 };
 </script>
+<style lang="scss" scoped>
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+</style>
