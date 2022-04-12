@@ -21,7 +21,7 @@
             >Books</router-link
           >
           <router-link
-            to="/my-library"
+            to="/"
             class="black--text text-decoration-none font-weight-medium mx-3"
             >My Library</router-link
           >
@@ -64,9 +64,6 @@
               <v-form @submit.prevent="search()">
                 <v-text-field
                   v-model="bookName"
-                  solo
-                  dense
-                  rounded
                   label="Find the book"
                   prepend-inner-icon="mdi-magnify"
                 ></v-text-field
@@ -76,9 +73,9 @@
         </div>
 
         <div>
-          <v-menu bottom min-width="220px" rounded offset-y>
-            <template v-slot:activator="{ on }">
-              <v-btn fab v-on="on">
+          <v-menu min-width="220px" nudge-bottom="20" rounded offset-y>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn fab v-on="on" v-bind="attrs">
                 <v-avatar size="36">
                   <v-img :src="user.Du.eN"></v-img
                 ></v-avatar>
@@ -87,21 +84,27 @@
             <v-card class="py-3">
               <v-list-item-content class="justify-center">
                 <div class="mx-auto text-center">
-                  <v-avatar>
+                  <!-- <v-avatar>
                     <v-img style="width: 100%" :src="user.Du.eN"></v-img>
-                  </v-avatar>
+                  </v-avatar> -->
                   <h3>{{ user.Du.tf }}</h3>
                   <p class="text-caption mt-1">
                     {{ user.Du.tv }}
                   </p>
-                  <v-divider class="my-3"></v-divider>
-                  <v-btn style="width: 90%; margin: 0 auto">
+                  <v-btn
+                    small
+                    color="cyan"
+                    class="white--text"
+                    style="width: 80%; margin: 0 auto"
+                  >
                     Edit Account
                   </v-btn>
-                  <v-divider class="my-3"></v-divider>
+                  <v-divider class="my-3 mx-1"></v-divider>
                   <v-btn
                     color="red"
-                    style="width: 90%; margin: 0 auto"
+                    small
+                    class="white--text"
+                    style="width: 80%; margin: 0 auto"
                     @click="logout"
                   >
                     Log out
@@ -134,7 +137,7 @@
             >Books</router-link
           >
           <router-link
-            to="/my-library"
+            to="/"
             class="black--text text-decoration-none font-weight-medium mx-3"
             >My Library</router-link
           >
@@ -164,7 +167,7 @@
                   <v-form @submit.prevent="search()">
                     <v-text-field
                       v-model="bookName"
-                      label="Find the book"
+                      label="Search for book"
                       prepend-inner-icon="mdi-magnify"
                     ></v-text-field
                   ></v-form>
@@ -178,7 +181,7 @@
                   solo
                   dense
                   rounded
-                  label="Find the book"
+                  label="Search for book"
                   prepend-inner-icon="mdi-magnify"
                 ></v-text-field
               ></v-form>
@@ -194,19 +197,28 @@
           <v-card class="py-3">
             <v-list-item-content class="justify-center">
               <div class="mx-auto text-center">
-                <v-avatar>
+                <!-- <v-avatar>
                   <v-img style="width: 100%" :src="user.Ju.AN"></v-img>
-                </v-avatar>
+                </v-avatar> -->
                 <h3>{{ user.Ju.sf }}</h3>
                 <p class="text-caption mt-1">
                   {{ user.Ju.zv }}
                 </p>
                 <v-divider class="my-3"></v-divider>
-                <v-btn style="width: 90%; margin: 0 auto"> Edit Account </v-btn>
+                <v-btn
+                  small
+                  color="cyan"
+                  class="white--text"
+                  style="width: 80%; margin: 0 auto"
+                >
+                  Edit Account
+                </v-btn>
                 <v-divider class="my-3"></v-divider>
                 <v-btn
+                  small
                   color="red"
-                  style="width: 90%; margin: 0 auto"
+                  class="white--text"
+                  style="width: 80%; margin: 0 auto"
                   @click="logout"
                 >
                   Log out

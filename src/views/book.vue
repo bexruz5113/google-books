@@ -77,9 +77,7 @@
                 </div>
                 <div class="mb-2">
                   Page:
-                  <b class="ml-1">
-                    <!-- {{ bookInfo.volumeInfo.pageCount }} -->
-                  </b>
+                  <b class="ml-1"> {{ bookInfo.volumeInfo.pageCount }} </b>
                 </div>
                 <div class="">
                   <a :href="bookInfo.saleInfo.buyLink"

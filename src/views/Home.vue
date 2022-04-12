@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="fullScreen">
     <Navbar />
     <v-container class="mx-auto mt-5">
       <v-row>
@@ -49,6 +49,10 @@ export default {
   margin: 0;
   box-sizing: border-box;
   text-decoration: none;
+}
+.fullScreen {
+  width: 100%;
+  height: 100%;
 }
 .textAnimation {
   text-transform: uppercase;

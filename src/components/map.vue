@@ -71,7 +71,7 @@ export default {
     Navbar,
   },
   data: () => ({
-    zoom: 13,
+    zoom: 12,
     center: { lat: 41.3110397, lng: 69.243862 },
     selectedLocation: null,
     infoBoxOpen: false,
@@ -264,7 +264,7 @@ export default {
 }
 
 .infoImage {
-  max-width: 300px;
+  max-width: 250px;
   width: 100%;
   height: 200px;
 }

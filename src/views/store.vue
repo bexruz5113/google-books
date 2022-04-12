@@ -30,19 +30,19 @@
               <div class="d-block px-4 text-lg-left text-sm-center text-left">
                 <div class="mb-2"><p class="ml-1 text-h5">iBook.uz</p></div>
                 <div class="mb-2">
-                  <v-icon color="info" medium>mdi-map-marker</v-icon> 142/1
+                  <v-icon color="black" medium>mdi-map-marker</v-icon> 142/1
                   Muqimiy ko'chasi, Тошкент, Узбекистан
                 </div>
                 <div class="mb-2">
-                  <v-icon color="info" medium>mdi-clock</v-icon>
+                  <v-icon color="black" medium>mdi-clock</v-icon>
                   09:00 - 18:00
                 </div>
                 <div class="mb-2">
-                  <v-icon color="info" medium>mdi-phone</v-icon>
+                  <v-icon color="black" medium>mdi-phone</v-icon>
                   +998934567393
                 </div>
                 <div class="d-flex align-center">
-                  <v-icon class="mr-2" color="info" medium>mdi-web</v-icon>
+                  <v-icon class="mr-2" color="black" medium>mdi-web</v-icon>
                   <a href="http://asaxiy.uz/">iBook.uz</a>
                 </div>
 
@@ -69,39 +69,39 @@
           </v-row>
         </v-col>
 
-        <v-col cols="12" class="my-5">
+        <v-col cols="12" class="my-md-10 my-5">
           <p class="text-md-h5 text-h6 font-weight-black ml-2">
             Recommended books
           </p>
           <VueSlickCarousel v-bind="settings">
-            <div v-for="(i, index) in 15" :key="index">
-              <div class="pa-0">
-                <v-list-item-avatar class="frameStyle" size="170">
-                  <img class="imgBorder" src="../assets/sherlock.jpg" />
-
-                  <div class="ratingInfo">
-                    <v-icon color="orange" x-small>mdi-star</v-icon>
-                    <p class="mb-0 pl-1">4.6</p>
-                  </div>
-                </v-list-item-avatar>
-              </div>
-              <div class="py-0">
-                <v-list-item color="black">
-                  <v-list-item-content>
-                    <v-list-item-title class="text-md-body-1">
-                      Sherlock Holmes
-                    </v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
+            <div v-for="(bookRec, index) in recommend" :key="index">
+              <div class="text-center">
+                <div class="pa-0">
+                  <v-list-item-avatar class="frameStyle" size="134">
+                    <img class="imgBorder" :src="bookRec.bookImage" />
+                  </v-list-item-avatar>
+                </div>
+                <div class="py-0">
+                  <v-list-item color="black">
+                    <v-list-item-content>
+                      <v-list-item-title
+                        style="white-space: normal"
+                        class="text-md-body-1"
+                      >
+                        {{ bookRec.bookName }}
+                      </v-list-item-title>
+                    </v-list-item-content>
+                  </v-list-item>
+                </div>
               </div>
             </div>
             <template #prevArrow="">
-              <v-btn fab medium class="mx-2" color="primary">
+              <v-btn fab small class="mx-2" color="primary">
                 <v-icon>mdi-arrow-left-bold</v-icon>
               </v-btn>
             </template>
             <template #nextArrow="">
-              <v-btn fab medium class="mx-2" color="primary">
+              <v-btn fab small class="mx-2" color="primary">
                 <v-icon>mdi-arrow-right-bold</v-icon>
               </v-btn>
             </template>
@@ -123,6 +123,7 @@
               @click="openInfoWindow(location)"
             />
             <gmap-info-window
+              style="height: 500px"
               v-if="selectedLocation !== null"
               :position="{
                 lat: selectedLocation.lat,
@@ -131,7 +132,7 @@
               :opened="infoBoxOpen"
               @closeclick="infoBoxOpen = false"
             >
-              <div class="infoWindow" style="width: 320px">
+              <div class="infoWindow" style="width: 250px">
                 <img class="infoImage" :src="selectedLocation.img" alt="" />
                 <h3 id="infoWindow-location">
                   {{ selectedLocation.address }}
@@ -179,7 +180,7 @@ export default {
         focusOnSelect: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 7,
+        slidesToShow: 6,
         slidesToScroll: 1,
         initialSlide: 0,
         touchThreshold: 5,
@@ -224,7 +225,7 @@ export default {
             },
           },
           {
-            breakpoint: 370,
+            breakpoint: 375,
             settings: {
               slidesToShow: 1,
               slidesToScroll: 1,
@@ -232,7 +233,75 @@ export default {
           },
         ],
       },
-      zoom: 13,
+      recommend: [
+        {
+          bookImage:
+            "http://books.google.com/books/content?id=ktkDAAAAQAAJ&printsec=frontcover&img=1&zoom=2&edge=curl&imgtk=AFLRE70xgph7PAlTx-YUMczr8jZa0ajei-lEA-5lg8iLehH4DP_3f7jmuqfK3ECBjSE1hU5m6PsCC_fyfkfpqQ4upFv_20NW-V2-6yVUO1Io0dwbzNqP8cOsDYDoYsgehdJmVwi9FFSO&source=gbs_api",
+          bookName: "Flowers and their associations",
+        },
+        {
+          bookImage:
+            "http://books.google.com/books/content?id=oLMRAAAAYAAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+          bookName: "Sunset",
+        },
+        {
+          bookImage:
+            "http://books.google.com/books/content?id=RxAJAAAAIAAJ&printsec=frontcover&img=1&zoom=2&edge=curl&imgtk=AFLRE70jYBsQv0sOFRmRbgNVTgTgFKi-dQL7-92-j-v26YRQ1Q9sZESZBwBcEKTSeSVfLcyzQVTr7BNDy_te3xELBaZ176IksqGNeVhdVxTvZxm_hWa_tR7Gl-zjsTNuzfzHi8S6mNHV&source=gbs_api",
+          bookName: "Adventures of Sherlock Holmes",
+        },
+        {
+          bookImage:
+            "http://books.google.com/books/content?id=NtgKAAAAIAAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+          bookName: "Император Александр Первий",
+        },
+        {
+          bookImage:
+            "http://books.google.com/books/content?id=HxKaHeAG0GoC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+          bookName: "Education in the state of São Paulo",
+        },
+        {
+          bookImage:
+            "http://books.google.com/books/content?id=OBlKAAAAYAAJ&printsec=frontcover&img=1&zoom=2&edge=curl&imgtk=AFLRE72zXHlTw4sDfKI9z8peMuFHUOWwqndcBUJdAWkSeJlSTPHjDMgRzEek-iTJrTm9f1ksZUh0B68cohql1QV9qpVrnDy59yRkLnnMIM0-8nFzd1c_MqQyj3TbutNOXcOfirigpXwN&source=gbs_api",
+          bookName: "A Little Princess",
+        },
+        {
+          bookImage:
+            "http://books.google.com/books/content?id=KUsBAAAAQAAJ&printsec=frontcover&img=1&zoom=2&edge=curl&imgtk=AFLRE70jtyxIcauYRppFK2o4ZvpAIG7zRaokFGsQpzxUv8Q8NLcaIV1_BqTCiSjosc6BGviJdHtDCuJdINxmZ5kj58mjqv9qPd-61lcKRrfQoU-nOjOo3bMBPH3hQFbL7iaXyhwrFRaN&source=gbs_api",
+          bookName: "Early Days of English Princes",
+        },
+        {
+          bookImage:
+            "http://books.google.com/books/content?id=ktkDAAAAQAAJ&printsec=frontcover&img=1&zoom=2&edge=curl&imgtk=AFLRE70xgph7PAlTx-YUMczr8jZa0ajei-lEA-5lg8iLehH4DP_3f7jmuqfK3ECBjSE1hU5m6PsCC_fyfkfpqQ4upFv_20NW-V2-6yVUO1Io0dwbzNqP8cOsDYDoYsgehdJmVwi9FFSO&source=gbs_api",
+          bookName: "Flowers and their associations",
+        },
+
+        {
+          bookImage:
+            "http://books.google.com/books/content?id=TtqvdoK7bfIC&printsec=frontcover&img=1&zoom=2&edge=curl&imgtk=AFLRE714tjoBbWea2vHMsujoF4ovBePb6h0CCL30Y_tae5FvCKgTrW_D_jEXebECz3S4P1XPyLDCJW_lilMnim0pmU7w2Na03H8iqHEVdShqdMSOt8vVc_Q3KgvOGfl2A7xntxubQHax&source=gbs_api",
+          bookName: "CRREL Monograph",
+        },
+        {
+          bookImage:
+            "http://books.google.com/books/content?id=jHkEAAAAMAAJ&printsec=frontcover&img=1&zoom=2&edge=curl&imgtk=AFLRE72ddOoi2BSvvC0P3bB7JNlfRO8jIPfNmw8sB_Ww2Iwc_eQ86BFnOLRoEdxlDAFYDaTcgXd4P6D1aGyaHTP7OwpqsqwnC6vi9UHitLTuQwOaR2e_OofrryYNgUG7D483VcRwXPsT&source=gbs_api",
+          bookName: "National Directory of Minority Manufacturers",
+        },
+        {
+          bookImage:
+            "http://books.google.com/books/content?id=34tjAAAAMAAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+          bookName: "The Works of George Byron",
+        },
+        {
+          bookImage:
+            "http://books.google.com/books/content?id=VdscAAAAMAAJ&printsec=frontcover&img=1&zoom=2&edge=curl&imgtk=AFLRE718aSYGCFJMQjgU9thz_n6bULxSwslTsnOVSa_FlFzBzSfjtPko7bvwfIQFc0a_OLyvNdglHcTpYjYgxMERQZ0wO9ngnLFxUdQMTIFVjmK6OXT6bppCWQL-EPlyUx4Jnx5QW4N0&source=gbs_api",
+          bookName: "The Works of Samuel Taylor Coleridge",
+        },
+        {
+          bookImage:
+            "http://books.google.com/books/content?id=ktkDAAAAQAAJ&printsec=frontcover&img=1&zoom=2&edge=curl&imgtk=AFLRE70xgph7PAlTx-YUMczr8jZa0ajei-lEA-5lg8iLehH4DP_3f7jmuqfK3ECBjSE1hU5m6PsCC_fyfkfpqQ4upFv_20NW-V2-6yVUO1Io0dwbzNqP8cOsDYDoYsgehdJmVwi9FFSO&source=gbs_api",
+          bookName: "Flowers and their associations",
+        },
+      ],
+      zoom: 12,
       center: { lat: 41.30212949222356, lng: 69.24871820381712 },
       // center: [41.30212949222356, 69.24871820381712],
       selectedLocation: null,

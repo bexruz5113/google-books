@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <v-main>
+      <!-- Oxirini o'ylagan qahramon bo'la olmaydi -->
       <router-view />
     </v-main>
   </v-app>
@@ -20,7 +21,8 @@ export default {
   box-sizing: border-box;
 }
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
+  max-height: 30px;
 }
 
 ::-webkit-scrollbar-track {
@@ -29,8 +31,7 @@ export default {
 
 ::-webkit-scrollbar-thumb {
   background: #ccc;
-  height: 80px;
-  border-radius: 2px;
+  border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(174, 173, 173);

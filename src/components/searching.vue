@@ -11,7 +11,7 @@
         class="mr-2"
       ></v-text-field>
 
-      <v-btn large class="ml-2 mt-1" color="primary" type="submit">
+      <v-btn medium class="ml-2 mt-3" color="primary" type="submit">
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
     </v-form>

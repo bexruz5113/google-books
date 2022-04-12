@@ -1,17 +1,10 @@
 <template>
-  <div>
+  <div class="fullScreen">
     <Navbar />
     <v-container class="mx-auto mt-5">
       <v-row>
-        <v-col
-          cols="12"
-          class="d-flex justify-center align-center"
-          style="width: 100vw; height: 100vh"
-          v-if="!books"
-        >
-          <div class="text-h5">
-            Sorry not found, <router-link to="/"> try again</router-link>
-          </div>
+        <v-col cols="12" v-if="!books">
+          <error />
         </v-col>
         <v-col
           v-else
@@ -49,7 +42,10 @@
             <div class="py-0">
               <v-list-item color="black">
                 <v-list-item-content>
-                  <v-list-item-title class="text-md-body-1">
+                  <v-list-item-title
+                    style="white-space: normal"
+                    class="text-md-body-1"
+                  >
                     {{ find.volumeInfo.title }}
                   </v-list-item-title>
                 </v-list-item-content>
@@ -101,10 +97,12 @@
 import Navbar from "../components/navbar.vue";
 import Footer from "../components/footer.vue";
 import { mapActions, mapGetters } from "vuex";
+import Error from "../components/error.vue";
 export default {
   components: {
     Navbar,
     Footer,
+    Error,
   },
   data() {
     return {};
@@ -136,6 +134,10 @@ export default {
   margin: 0;
   box-sizing: border-box;
   text-decoration: none;
+}
+.fullScreen {
+  width: 100%;
+  height: 100%;
 }
 
 .frameStyle {
