@@ -65,8 +65,16 @@ export default {
     async login() {
       let googleUser = await this.$gAuth.signIn();
 
-      const token = googleUser.wc.access_token;
-      const user = JSON.stringify(googleUser);
+      // console.log(googleUser.getBasicProfile());
+      // console.log(googleUser.getAuthResponse());
+
+      const token = googleUser.getAuthResponse().access_token;
+
+      // const token = googleUser.xc.access_token;
+      // console.log("with Nw" + JSON.stringify(googleUser.getBasicProfile()));
+      // console.log("without Nw" + JSON.stringify(googleUser));
+      const user = JSON.stringify(googleUser.getBasicProfile());
+      // const user = JSON.stringify(googleUser);
       localStorage.setItem("token", token);
       localStorage.setItem("user", user);
 
