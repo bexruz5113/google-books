@@ -144,13 +144,6 @@ export default {
       return this.$router.push("/map");
     },
   },
-  async mounted() {
-    this.loader = true;
-    await this.getUser().then(() => {
-      // console.log(this.user);
-    });
-    this.loader = false;
-  },
 };
 </script>
 

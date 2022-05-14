@@ -11,7 +11,7 @@ const getters = {
 };
 
 const mutations = {
-  GET_USER(state, payload) {
+  SET_USER(state, payload) {
     state.user = payload;
   },
   SET_TOKEN(state, payload) {
@@ -19,10 +19,9 @@ const mutations = {
   },
 };
 const actions = {
-  getUser({ commit }) {
-    const userInfo = localStorage.getItem("user") || {};
-    commit("GET_USER", JSON.parse(userInfo));
-    return Promise.resolve();
+  getUser({ commit }, { user = {}, token }) {
+    commit("SET_USER", user);
+    commit("SET_TOKEN", token);
   },
 };
 

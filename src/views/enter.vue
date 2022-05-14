@@ -58,31 +58,17 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapActions } from "vuex";
 export default {
   methods: {
-    ...mapMutations("user", ["GET_USER", "SET_TOKEN"]),
+    ...mapActions("user", ["getUser"]),
     async login() {
       let googleUser = await this.$gAuth.signIn();
-
-      // console.log(googleUser.getBasicProfile());
-      // console.log(googleUser.getAuthResponse());
-
       const token = googleUser.getAuthResponse().access_token;
-
-      // const token = googleUser.xc.access_token;
-      // console.log("with Nw" + JSON.stringify(googleUser.getBasicProfile()));
-      // console.log("without Nw" + JSON.stringify(googleUser));
-      const user = JSON.stringify(googleUser.getBasicProfile());
-      // const user = JSON.stringify(googleUser);
+      const user = JSON.parse(JSON.stringify(googleUser.getBasicProfile()));
       localStorage.setItem("token", token);
       localStorage.setItem("user", user);
-
-      this.SET_TOKEN(token);
-      // console.log("googleUser =>", googleUser);
-      this.GET_USER(googleUser);
-      // this.$store.commit("user/GET_USER", googleUser); or//
-
+      this.getUser({ user, token });
       this.$router.push("/");
     },
   },
