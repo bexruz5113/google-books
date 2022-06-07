@@ -1,3 +1,11 @@
+export default {
+  namespaced: true,
+  state,
+  getters,
+  mutations,
+  actions,
+};
+
 const state = () => ({
   user: localStorage.getItem("user") || {},
 
@@ -23,12 +31,4 @@ const actions = {
     commit("SET_USER", user);
     commit("SET_TOKEN", token);
   },
-};
-
-export default {
-  namespaced: true,
-  state,
-  getters,
-  mutations,
-  actions,
 };

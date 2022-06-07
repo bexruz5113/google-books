@@ -124,7 +124,8 @@ export default {
     },
   },
   mounted() {
-    console.log("collectionBook=>" + this.$route.name);
+    console.log("collectionBook=>" + this.$route.query.q);
+    console.log("xaxaxaxa=>" + this.$route.params.title);
   },
 };
 </script>

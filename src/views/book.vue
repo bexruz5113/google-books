@@ -311,7 +311,7 @@ export default {
     };
   },
   created() {
-    console.log(this.$route.params.id);
+    console.log("vaxaxaxaxa=> " + this.$route.params.id);
     this.get_bookInfo(this.$route.params.id);
   },
   computed: {

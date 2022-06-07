@@ -76,7 +76,11 @@
           <v-menu min-width="220px" nudge-bottom="20" rounded offset-y>
             <template v-slot:activator="{ on, attrs }">
               <v-btn fab v-on="on" v-bind="attrs">
-                <v-avatar size="36"> <v-img :src="user.rN"></v-img></v-avatar>
+                <v-avatar size="36">
+                  <v-icon color="grey">mdi-account</v-icon>
+                </v-avatar>
+
+                <!-- <v-avatar size="36"> <v-img :src="user.rN"></v-img></v-avatar> -->
               </v-btn>
             </template>
             <v-card class="py-3">
@@ -85,9 +89,9 @@
                   <!-- <v-avatar>
                     <v-img style="width: 100%" :src="user.Du.eN"></v-img>
                   </v-avatar> -->
-                  <h3>{{ user.tf }}</h3>
+                  <!-- <h3>{{ user.tf }}</h3> -->
                   <p class="text-caption mt-1">
-                    {{ user.Bv }}
+                    <!-- {{ user.Bv }} -->
                   </p>
                   <v-btn
                     small
