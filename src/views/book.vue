@@ -3,59 +3,32 @@
     <Navbar />
     <v-container class="mx-auto mt-10 border-2 border-gray">
       <v-row>
-        <v-col cols="12" class="text-center" v-if="!bookInfo">
-          <v-progress-circular
-            :size="100"
-            color="primary"
-            indeterminate
-          ></v-progress-circular>
-        </v-col>
-        <v-col v-else cols="12" class="d-flex">
+        <v-col cols="12" class="d-flex">
           <v-row>
-            <v-col
-              cols="12"
-              md="6"
-              class="mx-auto text-center white rounded-xl py-lg-10 py-5"
-            >
-              <span class="imgPosition mx-5">
-                <img
-                  class="imgBorder"
-                  :src="imgLinks(bookInfo.volumeInfo)"
-                  alt=""
-                />
+            <v-col cols="12" md="6" class="mx-auto text-center white rounded-xl py-lg-10 py-5">
+              <span v-if="!bookInfo.volumeInfo">
+                <v-progress-circular :size="100" color="primary" indeterminate></v-progress-circular>
+              </span>
+              <span v-else class="imgPosition mx-5">
+                <img class="imgBorder" :src="imgLinks(bookInfo.volumeInfo)" alt="" />
                 <p class="textPosition">#book</p>
               </span>
             </v-col>
             <v-col cols="12" md="6" class="px-md-4 px-1 mt-sm-1 mt-5">
               <div v-if="!bookInfo.volumeInfo">
-                <v-sheet
-                  :color="`grey ${theme.isDark ? 'darken-2' : 'lighten-4'}`"
-                  class="pa-3"
-                >
-                  <v-skeleton-loader
-                    class="mx-auto"
-                    max-width="500"
-                    type="text@20"
-                  ></v-skeleton-loader>
+                <v-sheet :color="`grey ${theme.isDark ? 'darken-2' : 'lighten-4'}`" class="pa-3">
+                  <v-skeleton-loader class="mx-auto" max-width="500" type="text@20"></v-skeleton-loader>
                 </v-sheet>
               </div>
-              <div
-                v-else
-                class="d-block px-4 text-lg-left text-sm-center text-left"
-              >
+              <div v-else class="d-block px-4 text-lg-left text-sm-center text-left">
                 <!-- <div v-html="description(bookInfo.volumeInfo)"></div> -->
                 <div class="mb-2">
                   Title: <b class="ml-1">{{ bookInfo.volumeInfo.title }}</b>
                 </div>
-                <div
-                  class="d-flex justify-lg-start justify-sm-center justify-start mb-2"
-                >
+                <div class="d-flex justify-lg-start justify-sm-center justify-start mb-2">
                   <div>Author:</div>
                   <div class="ml-1">
-                    <div
-                      v-for="author in authors(bookInfo.volumeInfo)"
-                      :key="author.index"
-                    >
+                    <div v-for="author in authors(bookInfo.volumeInfo)" :key="author.index">
                       <b class="mb-1">{{ author }}</b>
                     </div>
                     <div class="grey--text text-caption">
@@ -65,8 +38,7 @@
                 </div>
                 <div class="mb-2">
                   Date:
-                  <b class="ml-1"
-                    >Jan. {{ bookInfo.volumeInfo.publishedDate }}
+                  <b class="ml-1">Jan. {{ bookInfo.volumeInfo.publishedDate }}
                   </b>
                 </div>
                 <div class="mb-2">
@@ -80,9 +52,7 @@
                   <b class="ml-1"> {{ bookInfo.volumeInfo.pageCount }} </b>
                 </div>
                 <div class="">
-                  <a :href="bookInfo.saleInfo.buyLink"
-                    >{{ saleability }} reading</a
-                  >
+                  <a :href="bookInfo.saleInfo.buyLink">{{ saleability }} reading</a>
                 </div>
                 <div class="mt-3">
                   <p class="text-h6 mb-1">Overview</p>
@@ -110,8 +80,8 @@
         <v-col cols="12" class="mt-8 mx-auto">
           <p class="text-md-h4 text-h5 font-weight-black ml-2">
             Book stores
-          </p></v-col
-        >
+          </p>
+        </v-col>
 
         <!-- <v-col class="my-2 mx-auto" cols="10">
           <v-card class="pa-2 mx-2" outlined>
@@ -154,12 +124,7 @@
           </v-card>
         </v-col> -->
 
-        <v-col
-          class="my-2 mx-auto"
-          cols="12"
-          v-for="(store, index) in stores"
-          :key="index"
-        >
+        <v-col class="my-2 mx-auto" cols="12" v-for="(store, index) in stores" :key="index">
           <v-card class="pa-2 mx-2" outlined rounded="lg">
             <div class="d-block">
               <div class="d-flex">
@@ -170,16 +135,21 @@
                   <div>
                     <div class="d-flex justify-space-between align-center">
                       <div>
-                        <p
-                          class="text-md-h5 text-sm-body-2 font-weight-black mb-1"
-                        >
+                        <p class="text-md-h5 text-sm-body-2 font-weight-black mb-1">
                           {{ store.name }}
                         </p>
                       </div>
                       <div>
                         <p class="font-weight-bold text-caption mr-1 my-1">
-                          {{ store.range }} km
+                          {{ rangeDistance(store.lat, store.lng) }} km
                         </p>
+                        <!-- <div>
+                          {{ currLocation }}
+                        </div>
+                        <div>
+                          {{ store.position }}
+                          {{ rangeDistance }}
+                        </div> -->
                       </div>
                     </div>
                     <div>
@@ -188,30 +158,16 @@
                       </p>
                     </div>
                   </div>
-                  <div
-                    style="width: 100%"
-                    class="d-sm-flex d-none justify-start mb-2"
-                  >
+                  <div style="width: 100%" class="d-sm-flex d-none justify-start mb-2">
                     <div class="mr-2">
-                      <v-btn
-                        @click="copy(+998934567393)"
-                        class="blue lighten-5 blue--text text-caption"
-                        small
-                        outlined
-                        rounded
-                      >
+                      <v-btn @click="copy(+998934567393)" class="blue lighten-5 blue--text text-caption" small outlined
+                        rounded>
                         <v-icon color="info" small>mdi-phone</v-icon>
                         +998934567393
                       </v-btn>
                     </div>
                     <div class="ml-2">
-                      <v-btn
-                        @click="findMap"
-                        class="blue lighten-5 blue--text text-caption"
-                        small
-                        outlined
-                        rounded
-                      >
+                      <v-btn @click="findMap" class="blue lighten-5 blue--text text-caption" small outlined rounded>
                         <v-icon small>mdi-map-outline</v-icon>
                         View on map
                       </v-btn>
@@ -219,30 +175,16 @@
                   </div>
                 </div>
               </div>
-              <div
-                style="width: 100%"
-                class="d-sm-none d-flex justify-start mb-2"
-              >
+              <div style="width: 100%" class="d-sm-none d-flex justify-start mb-2">
                 <div class="mr-2">
-                  <v-btn
-                    @click="copy(+998934567393)"
-                    class="blue lighten-5 blue--text text-caption"
-                    small
-                    outlined
-                    rounded
-                  >
+                  <v-btn @click="copy(+998934567393)" class="blue lighten-5 blue--text text-caption" small outlined
+                    rounded>
                     <v-icon color="info" small>mdi-phone</v-icon>
                     +998934567393
                   </v-btn>
                 </div>
                 <div class="ml-2">
-                  <v-btn
-                    @click="findMap"
-                    class="blue lighten-5 blue--text text-caption"
-                    small
-                    outlined
-                    rounded
-                  >
+                  <v-btn @click="findMap" class="blue lighten-5 blue--text text-caption" small outlined rounded>
                     <v-icon small>mdi-map-outline</v-icon>
                     View on map
                   </v-btn>
@@ -270,49 +212,78 @@ export default {
   components: { Navbar, Footer },
   data() {
     return {
+      currLocation: {},
+      lat: 41.2931869,
+      lng: 69.222,
       stores: [
         {
           img: "https://lh5.googleusercontent.com/p/AF1QipOfiw4mNV2x4cFjBEhT4IM2b1moajkC4dfUp5Tg=w408-h272-k-no",
           name: "Kitob dunyosi",
-          range: 2.35,
+          lat: 41.31493145035253,
+          lng: 69.28882716931199,
+          // position: [41.31493145035253, 69.28882716931199],
           cost: 44000,
         },
         {
           img: "https://lh5.googleusercontent.com/p/AF1QipOIcPvrFQvKY2PabJOI52ZDoBeeizMUzFPixFuA=w408-h306-k-no",
           name: "Asaxiy Books",
-          range: 3.81,
+          lat: 41.2931869,
+          lng: 69.222,
+          // position: [41.2931869, 69.222],
           cost: 34000,
         },
         {
           img: "https://lh5.googleusercontent.com/p/AF1QipNXmYT5KOuFlNrmRiJkDE4XyZE40rlc2PcLsVFI=w408-h280-k-no",
           name: "Hilol Nashr",
-          range: 5.87,
+          lat: 41.32278025693745,
+          lng: 69.20686269041931,
+          // position: [41.32278025693745, 69.20686269041931],
           cost: 28000,
         },
         {
-          img: "https://lh5.googleusercontent.com/p/AF1QipNh6hUlC58_McAb9Hfr_XdntWja_WAAVj0ematC=w426-h240-k-no",
-          name: "Book.uz",
-          range: 4.44,
+          img: "https://lh5.googleusercontent.com/p/AF1QipMV-8iEsoK_yJeURukACGz6mk3l1mjl1WfHcloH=w419-h240-k-no",
+          name: "Yuridik adabiyotlar",
+          lat: 41.285715823911325,
+          lng: 69.23269668465599,
+          // position: [41.285715823911325, 69.23269668465599],
           cost: 33000,
         },
         {
           img: "https://lh5.googleusercontent.com/p/AF1QipP0HEnZq8lGZzzhl6cl43Xdqx2MX8_wf7P2Of2N=w408-h408-k-no",
           name: "Audio kitoblar",
-          range: 1.18,
+          lat: 41.32646597547426,
+          lng: 69.33293716219583,
+          // position: [41.32646597547426, 69.33293716219583],
           cost: 34000,
         },
         {
           img: "https://lh5.googleusercontent.com/p/AF1QipOxMjX4eXIHPaVGeA6YCGUqUCeamVw6rhEdT76P=w408-h408-k-no",
-          name: "Macmillan",
-          range: 5.87,
+          name: "Malico Books",
+          lat: 41.3272603,
+          lng: 69.2899334,
+          // position: [41.3272603, 69.2899334],
           cost: 37000,
         },
       ],
     };
   },
   created() {
-    console.log("vaxaxaxaxa=> " + this.$route.params.id);
+    // console.log("vaxaxaxaxa=> " + this.$route.params.id);
     this.get_bookInfo(this.$route.params.id);
+  },
+  mounted() {
+    this.rangeDistance();
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(currentPosition => {
+        this.currLocation = {
+          latitude: currentPosition.coords.latitude,
+          longitude: currentPosition.coords.longitude
+        }
+      })
+    }
+    else {
+      alert('Geolocation is not supported in this browser')
+    }
   },
   computed: {
     ...mapGetters("bookInfo", ["bookInfo"]),
@@ -322,6 +293,14 @@ export default {
   },
   methods: {
     ...mapActions("bookInfo", ["get_bookInfo"]),
+    rangeDistance(lat, lng) {
+        let dLat = (lat - this.currLocation.latitude) * (Math.PI / 180);
+        let dLon = (lng - this.currLocation.longitude) * (Math.PI / 180);
+        let a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos((Math.PI / 180) * (this.currLocation.latitude)) * Math.cos((Math.PI / 180) * (lat)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        let d = (6371 * c).toString();
+        return d.slice(0, 4);
+    },
     findMap() {
       this.$router.push("/stores");
     },
@@ -348,27 +327,33 @@ export default {
   box-sizing: border-box;
   text-decoration: none;
 }
+
 .range {
   font-family: "Cera Pro";
 }
+
 .storeImage {
   width: 100%;
   max-width: 110px;
   height: 100px;
   padding: 2px;
 }
+
 .imgPosition {
   position: relative;
 }
+
 .imgBorder {
   width: 100%;
   max-width: 330px;
 }
+
 @media only screen and (max-width: 768px) {
   .imgBorder {
     width: 100%;
     max-width: 330px;
   }
+
   .storeImage {
     width: 100%;
     max-width: 100px;
@@ -376,16 +361,19 @@ export default {
     padding: 2px;
   }
 }
+
 @media only screen and (max-width: 425px) {
   .imgBorder {
     width: 100%;
     max-width: 280px;
   }
+
   .storeImage {
     height: 70px;
     padding: 5px;
   }
 }
+
 .textPosition {
   position: absolute;
   right: 0;

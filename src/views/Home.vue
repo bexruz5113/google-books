@@ -1,17 +1,37 @@
 <template>
   <div>
     <Navbar />
+    <div class="text-center">
+      <v-dialog v-model="dialog" width="500">
+
+        <v-card>
+          <v-card-title class="text-h5 grey lighten-2">
+            Note
+          </v-card-title>
+
+          <v-card-text class="text-body-1 py-4 font-weight-medium">
+            You can search for books by <span class="font-weight-bold blue--text">English writers</span> and find out which bookshop is selling them.
+          </v-card-text>
+
+          <v-divider></v-divider>
+
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="info" text @click="dialog = false">
+              i understand </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </div>
     <v-container class="mx-auto mt-5">
       <v-row>
         <v-col cols="12">
           <v-row class="d-block mb-3">
+
             <v-col cols="12" md="4" class="mx-auto text-center">
               <!-- <p class="textAnimation text-h2 font-weight-bold">Google Book</p> -->
               <router-link to="/">
-                <v-img
-                  style="width: 100%; max-width: 600px"
-                  src="../assets/logo1.png"
-                ></v-img>
+                <v-img style="width: 100%; max-width: 600px" src="../assets/logo1.png"></v-img>
               </router-link>
             </v-col>
             <v-col cols="12" md="6" class="my-md-0 my-10 mx-md-auto px-3">
@@ -19,11 +39,7 @@
             </v-col>
             <v-col cols="12" class="text-center mt-md-10 mt-16">
               <div class="mx-auto">
-                <img
-                  style="width: 100%; max-width: 228px"
-                  src="../assets/gggg.svg"
-                  alt=""
-                />
+                <img style="width: 100%; max-width: 228px" src="../assets/gggg.svg" alt="" />
               </div>
             </v-col>
           </v-row>
@@ -41,6 +57,11 @@ import Navbar from "../components/navbar.vue";
 export default {
   components: { Navbar, Searching, Footer },
   name: "Home",
+  data() {
+    return {
+      dialog: true,
+    }
+  }
 };
 </script>
 <style scoped>
@@ -50,43 +71,47 @@ export default {
   box-sizing: border-box;
   text-decoration: none;
 }
+
 .textAnimation {
   text-transform: uppercase;
-  background-image: linear-gradient(
-    to right,
-    red,
-    yellow,
-    green,
-    blue,
-    red,
-    yellow,
-    green,
-    blue
-  );
+  background-image: linear-gradient(to right,
+      red,
+      yellow,
+      green,
+      blue,
+      red,
+      yellow,
+      green,
+      blue);
   background-clip: text;
   color: transparent;
   background-size: 300%;
   background-position: -100%;
   animation: animatedText 10s infinite linear;
 }
+
 @keyframes animatedText {
   from {
     background-position: 0%;
   }
+
   to {
     background-position: 100%;
   }
 }
+
 .imgBorder {
   border-radius: 5px;
   margin-top: 0;
   border: 1px solid rgb(63, 62, 62);
 }
+
 .imgPosition {
   position: relative;
   display: flex;
   transition: all 0.9s ease;
 }
+
 .iconPosition {
   width: 100%;
   height: 100%;
@@ -99,9 +124,11 @@ export default {
   background-color: rgba(182, 180, 180, 0.719);
   display: none;
 }
+
 .imgPosition:hover .iconPosition {
   display: flex;
 }
+
 .linkStyle {
   padding: 2px 5px;
   font-size: 14px;

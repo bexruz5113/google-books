@@ -4,64 +4,51 @@
     <v-container class="mx-auto mt-10 border-2 border-gray">
       <v-row>
         <v-col cols="12" class="text-center" v-if="!bookInfo">
-          <v-progress-circular
-            :size="100"
-            color="primary"
-            indeterminate
-          ></v-progress-circular>
+          <v-progress-circular :size="100" color="primary" indeterminate></v-progress-circular>
         </v-col>
         <v-col v-else cols="12" class="d-flex">
           <v-row>
-            <v-col
-              cols="12"
-              md="6"
-              class="mx-auto text-center white rounded-xl py-lg-10 py-5"
-            >
+            <v-col cols="12" md="6" class="mx-auto px-2">
+              <div class="text-center white rounded-xl py-lg-8 py-4">
               <span class="imgPosition mx-5">
-                <img
-                  class="imgBorder"
-                  src="https://lh5.googleusercontent.com/p/AF1QipMzPV0Mtg0dyitiwhvoYE3QKB1Yr-JKLfDyvBuq=w408-h544-k-no"
-                  alt=""
-                />
+                <img class="imgBorder pa-0"
+                  src="https://avatars.mds.yandex.net/get-altay/5098556/2a0000017b201e2b7e447809c143168b37b7/XXL_height"
+                  alt="" />
                 <p class="textPosition">#store</p>
               </span>
+            </div>
             </v-col>
             <v-col cols="12" md="6" class="px-md-4 px-1 mt-sm-1 mt-5">
               <div class="d-block px-4 text-lg-left text-sm-center text-left">
-                <div class="mb-2"><p class="ml-1 text-h5">iBook.uz</p></div>
                 <div class="mb-2">
-                  <v-icon color="black" medium>mdi-map-marker</v-icon> 142/1
-                  Muqimiy ko'chasi, Тошкент, Узбекистан
+                  <p class="ml-1 text-h5">Asaxiy</p>
+                </div>
+                <div class="mb-2">
+                  <v-icon color="black" medium>mdi-map-marker</v-icon> 142, 2 Muqimiy ko'chasi, Tashkent 100115
                 </div>
                 <div class="mb-2">
                   <v-icon color="black" medium>mdi-clock</v-icon>
-                  09:00 - 18:00
+                  10:00 - 22:00
                 </div>
                 <div class="mb-2">
                   <v-icon color="black" medium>mdi-phone</v-icon>
-                  +998934567393
+                  <a class="black--text" href="tel: +998 93 969-51-13">+998712000105</a>
                 </div>
                 <div class="d-flex align-center">
                   <v-icon class="mr-2" color="black" medium>mdi-web</v-icon>
-                  <a href="http://asaxiy.uz/">iBook.uz</a>
+                  <a href="http://asaxiy.uz/">asaxiy.uz</a>
                 </div>
 
                 <div class="mt-3">
                   <p class="text-h6 mb-1">Overview</p>
-                  <p class="range text-body-2">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Odit sunt, dolore amet animi ipsa autem voluptate excepturi
-                    culpa dolorem vel. Debitis recusandae quis quo, rerum
-                    pariatur odit accusantium culpa maxime impedit perspiciatis
-                    quaerat ratione et asperiores veritatis magnam! Voluptas
-                    molestiae non facilis similique, ea facere ratione officia
-                    illo, aut dolorum eaque nam ad iste odit impedit, sint est
-                    dignissimos! Ipsa voluptatum illo, obcaecati iste
-                    consequuntur ullam placeat. Eligendi molestiae quasi
-                    doloribus animi nulla illum quisquam veritatis similique,
-                    perspiciatis aut repellendus voluptates non veniam dicta
-                    amet dolores, deleniti blanditiis aperiam autem quos. Unde
-                    facilis architecto modi rem minima.
+                  <p class="range text-body-1">
+                    Asaxiy uz Oʻzbekistonda amaldagi internet-doʻkonlardan birinchi ochilgani va eng yirigidir. <br /> Internet-doʻkon tizimida 23000 xildan ortiq mahsulotlar sotuvga qoʻyilgan. Bular orasida maishiy
+                    texnika vositalari, smartfonlar, gadjetlar, kompyuter va kompyuter jihozlari, idish-tovoqlar va boshqa
+                    mahsulotlar bor. Internet-doʻkon platformasida Oʻzbekistonda ilk marotaba onlayn muddatli toʻlov
+                    xizmati yoʻlga qoʻyilgan. <br />
+
+                    2018-yilda kompaniya oʻzining yangi loyihasi “Asaxiy Books”ni boshlaydi va loyiha orqali Oʻzbekistonda
+                    kitobxonlik hamda kitob bozorini oʻzgartirishga erishadi. 
                   </p>
                 </div>
               </div>
@@ -84,10 +71,7 @@
                 <div class="py-0">
                   <v-list-item color="black">
                     <v-list-item-content>
-                      <v-list-item-title
-                        style="white-space: normal"
-                        class="text-md-body-1"
-                      >
+                      <v-list-item-title style="white-space: normal" class="text-md-body-1">
                         {{ bookRec.bookName }}
                       </v-list-item-title>
                     </v-list-item-content>
@@ -110,45 +94,43 @@
         <v-col cols="12" class="mt-8 mx-auto">
           <p class="text-md-h5 text-h6 font-weight-black ml-2">
             Book store location
-          </p></v-col
-        >
-
+          </p>
+        </v-col>
         <v-col cols="12" class="mx-auto">
           <gmap-map :center="center" :zoom="zoom" ref="map">
-            <gmap-marker
-              :key="index"
-              v-for="(location, index) in locations"
-              :position="{ lat: location.lat, lng: location.lng }"
-              :clickable="true"
-              @click="openInfoWindow(location)"
-            />
-            <gmap-info-window
-              style="height: 500px"
-              v-if="selectedLocation !== null"
-              :position="{
-                lat: selectedLocation.lat,
-                lng: selectedLocation.lng,
-              }"
-              :opened="infoBoxOpen"
-              @closeclick="infoBoxOpen = false"
-            >
-              <div class="infoWindow" style="width: 250px">
+
+            <gmap-marker :key="index" v-for="(location, index) in locations"
+              :position="{ lat: location.lat, lng: location.lng }" :clickable="true" @click="openInfoWindow(location)" />
+
+            <gmap-marker :position="{ lat: locate.latitude, lng: locate.longitude }" :clickable="false" />
+            <!-- <gmap-polyline v-if="path.length > 0" :path="path" ref="polyline" :options="{
+              strokeColor: '#fff'
+            }"> 
+            </gmap-polyline>-->
+            <!-- <DirectionsRenderer travelMode="DRIVING" :origin="{ lat: 41.310618, lng: 69.320704 }"
+              :destination="{ lat: 41.2931869, lng: 69.222 }" /> -->
+
+            <gmap-info-window style="height: 500px" v-if="selectedLocation !== null" :position="{
+              lat: selectedLocation.lat,
+              lng: selectedLocation.lng,
+            }" :opened="infoBoxOpen" @closeclick="infoBoxOpen = false">
+              <div class="infoWindow" style="width: 260px">
                 <img class="infoImage" :src="selectedLocation.img" alt="" />
                 <h3 id="infoWindow-location">
                   {{ selectedLocation.address }}
                 </h3>
                 <br />
-                <div class="d-flex align-center">
-                  <v-icon color="primary">mdi-map-marker</v-icon>
-                  <h4>Address:{{ selectedLocation.address }}</h4>
+                <div class="d-flex justify-start">
+                  <v-icon color="info">mdi-map-marker</v-icon>
+                  <h4>Address: <span class="blue--text font-weight-medium text-caption"> {{ selectedLocation.address }}</span></h4>
+                </div>
+                <div class="d-flex align-center my-1">
+                  <v-icon color="info" >mdi-clock</v-icon>
+                  <h4>Open: <span class="blue--text font-weight-medium text-caption"> {{ selectedLocation.open }}</span></h4>
                 </div>
                 <div class="d-flex align-center">
-                  <v-icon color="primary">mdi-clock</v-icon>
-                  <h4>Open:{{ selectedLocation.open }}</h4>
-                </div>
-                <div class="d-flex align-center">
-                  <v-icon color="primary">mdi-phone</v-icon>
-                  <h4>Phone: +{{ selectedLocation.phone }}</h4>
+                  <v-icon color="info">mdi-phone</v-icon>
+                  <h4>Phone: <span class="blue--text font-weight-medium text-caption"> +{{ selectedLocation.phone }}</span></h4>
                 </div>
               </div>
             </gmap-info-window>
@@ -156,25 +138,31 @@
         </v-col>
       </v-row>
     </v-container>
+    <!-- <Direction /> -->
     <Footer />
   </div>
 </template>
 
 <script>
+// import DirectionsRenderer from '../DirectionsRenderer.js';
 import Navbar from "../components/navbar.vue";
 import Footer from "../components/footer.vue";
 import { mapActions, mapGetters } from "vuex";
 import VueSlickCarousel from "vue-slick-carousel";
 import "vue-slick-carousel/dist/vue-slick-carousel.css";
+// import Direction from "../components/direction.vue";
 
 export default {
   components: {
     Navbar,
     Footer,
     VueSlickCarousel,
+    // Direction,
+    // DirectionsRenderer
   },
   data() {
     return {
+      locate: '',
       settings: {
         arrows: true,
         focusOnSelect: true,
@@ -233,6 +221,10 @@ export default {
           },
         ],
       },
+      path: [
+        { lat: 41.310618, lng: 69.320704 },
+        { lat: 41.2931869, lng: 69.222 },
+      ],
       recommend: [
         {
           bookImage:
@@ -302,34 +294,102 @@ export default {
         },
       ],
       zoom: 12,
-      center: { lat: 41.30212949222356, lng: 69.24871820381712 },
-      // center: [41.30212949222356, 69.24871820381712],
+      center: { lat: 41.319781, lng: 69.263195 },
       selectedLocation: null,
       infoBoxOpen: false,
       locations: [
         {
-          title: "iBook.uz",
-          img: "https://lh5.googleusercontent.com/p/AF1QipMzPV0Mtg0dyitiwhvoYE3QKB1Yr-JKLfDyvBuq=w408-h544-k-no",
-          address: "866V+CG9, Tashkent, Uzbekistan",
-          open: "09:00 - 20:00",
-          phone: 998933187919,
-          lat: 41.3110397,
-          lng: 69.243862,
-          // position: [41.3110397, 69.243862],
+          title: "Asaxiy",
+          img: "https://avatars.mds.yandex.net/get-altay/5098556/2a0000017b201e2b7e447809c143168b37b7/XXL_height",
+          address: "142, 2 Muqimiy ko'chasi, Tashkent, Uzbekistan",
+          open: "10:00 - 22:00",
+          phone: +998712000105,
+          lat: 41.2931869,
+          lng: 69.222,
         },
       ],
     };
   },
   created() {
-    console.log(this.$route.params.id);
     this.get_bookInfo(this.$route.params.id);
+    this.roads();
   },
+
   computed: {
     ...mapGetters("bookInfo", ["bookInfo"]),
     saleability() {
       return this.bookInfo.saleInfo.saleability.toLowerCase();
     },
+    road() {
+      return 4
+    }
+    // addDestinationPoint() {
+    //   directionsService = new google.maps.DirectionsService();
+    //   directionsRenderer = new google.maps.DirectionsRenderer();
+    //   directionsRenderer.setMap(map);
+    //   calcRoute();
+    //   const passengerName = document.getElementById("passengerName").value;
+    //   if (this.currentPlace || this.destinationPlaces.length <= 7) {
+    //     const marker = {
+    //       lat: this.currentPlace.geometry.location.lat(),
+    //       lng: this.currentPlace.geometry.location.lng(),
+    //     };
+    //     const passengerInfo = {
+    //       name: passengerName,
+    //       pickUpPoint: marker,
+    //     };
+    //     this.markers.push({ position: marker });
+    //     this.path.push({ lat: marker.lat, lng: marker.lng });
+    //     this.destinationPlaces.push(this.currentPlace);
+    //     this.passengers.push({ passengerInfo });
+    //     console.log(this.passengers);
+    //     this.center = marker;
+    //     this.currentPlace = null;
+    //     this.endLocation = marker;
+    //     this.waypnt.push({
+    //       location: { lat: marker.lat, lng: marker.lng },
+    //       stopover: true,
+    //     });
+    //   } else {
+    //     alert("You are allowed to add 8 passenger only!");
+    //   }
+    // },
+    // calcRoute() {
+    //   let directionsService = new google.maps.DirectionsService()
+    //   let directionsDisplay = new google.maps.DirectionsRenderer()
+    //   this.$nextTick(() => {
+    //     directionsDisplay.setMap(map)
+    //   })
+    //   directionsService.route({
+    //     origin: { lat: 41.2931869, lng: 69.222 },
+    //     destination: { lat: 41.274573, lng: 69.258445 },
+    //     travelMode: 'DRIVING'
+
+    //   }, function (response, status) {
+    //     if (status === 'OK') {
+    //       directionsDisplay.setDirections(response)
+    //     }
+    //   })
+    // }
   },
+
+  mounted() {
+    if (navigator.geolocation) {
+      setTimeout(() => {
+        navigator.geolocation.getCurrentPosition((currentPosition) =>
+          this.locate = {
+            latitude: currentPosition.coords.latitude,
+            longitude: currentPosition.coords.longitude
+          }
+        )
+      }, "1000");
+    }
+    else {
+      alert('Geolocation is not supported in this browser')
+    };
+    // this.addDestinationPoint();
+  },
+
   methods: {
     ...mapActions("bookInfo", ["get_bookInfo"]),
     openInfoWindow(location) {
@@ -366,49 +426,36 @@ export default {
   box-sizing: border-box;
   text-decoration: none;
 }
+
 .slick-slider {
   display: flex;
   align-items: center;
   justify-self: center;
 }
+
 .range {
   font-family: "Cera Pro";
 }
+
 .storeImage {
   width: 100%;
   max-width: 110px;
   height: 110px;
   padding: 8px;
 }
+
 .imgPosition {
   position: relative;
 }
+
 .imgBorder {
   width: 100%;
-  max-width: 330px;
-}
-@media only screen and (max-width: 768px) {
-  .imgBorder {
-    width: 100%;
-    max-width: 330px;
-  }
-  .storeImage {
-    width: 100%;
-    max-width: 80px;
-    height: 80px;
-    padding: 2px;
-  }
-}
-@media only screen and (max-width: 425px) {
-  .imgBorder {
-    width: 100%;
-    max-width: 280px;
-  }
+  max-width: 500px;
 }
 .textPosition {
   position: absolute;
   right: 0;
-  bottom: 100px;
+  bottom: 70px;
   border-radius: 2px;
   padding: 1px 45px;
   background-color: #2a80d6;
@@ -416,6 +463,33 @@ export default {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
 }
+
+@media only screen and (max-width: 768px) {
+  .imgBorder {
+    width: 100%;
+    max-width: 330px;
+  }
+
+  .storeImage {
+    width: 100%;
+    max-width: 80px;
+    height: 80px;
+    padding: 2px;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .imgBorder {
+    width: 100%;
+    max-width: 250px;
+  }
+  .textPosition{
+    bottom: 20px;
+  }
+}
+
+
+
 .frameStyle {
   width: 100%;
   height: 170px;
@@ -424,14 +498,17 @@ export default {
   border-radius: 8px;
   position: relative;
 }
+
 .v-application--is-ltr .v-list-item__avatar:first-child {
   margin-right: 0px;
 }
+
 .imgBorder {
   background: rgba(197, 191, 191, 0.575);
   padding: 20px 25px;
   margin: 0 auto;
 }
+
 .ratingInfo {
   display: flex;
   width: 50px;
@@ -445,5 +522,4 @@ export default {
   background-color: white;
   color: rgb(28, 28, 121);
   font-family: sans-serif;
-}
-</style>
+}</style>
