@@ -320,9 +320,7 @@ export default {
     saleability() {
       return this.bookInfo.saleInfo.saleability.toLowerCase();
     },
-    road() {
-      return 4
-    }
+
     // addDestinationPoint() {
     //   directionsService = new google.maps.DirectionsService();
     //   directionsRenderer = new google.maps.DirectionsRenderer();
@@ -387,7 +385,6 @@ export default {
     else {
       alert('Geolocation is not supported in this browser')
     };
-    // this.addDestinationPoint();
   },
 
   methods: {

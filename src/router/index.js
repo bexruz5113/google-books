@@ -6,7 +6,7 @@ import error from "../components/error.vue";
 import collectionBook from "../views/collectionBook.vue";
 import enter from "../views/enter.vue";
 import map from "../components/map.vue";
-import direction from "../components/direction.vue";
+// import direction from "../components/direction.vue";
 import leafletMap from "../components/leafletMap.vue";
 import store from "../views/store.vue";
 
@@ -49,11 +49,11 @@ const routes = [
     name: "store",
     component: store,
   },
-  {
-    path: "/direction",
-    name: "direction",
-    component: direction,
-  },
+  // {
+  //   path: "/direction",
+  //   name: "direction",
+  //   component: direction,
+  // },
   {
     path: "*",
     name: "Error",

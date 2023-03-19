@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div>
     <gmap-map
       v-show="showMap"
@@ -54,4 +54,4 @@ export default {
     }
   }
 }
-</script>
+</script> -->
